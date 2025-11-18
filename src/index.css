@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Thin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/Pretendard-ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Pretendard-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
+}
+
+@theme {
+  --color-brown-light: #f2f0ee;
+  --color-brown-light-hover: #ebe8e5;
+  --color-brown-light-active: #d6d0ca;
+  --color-brown-normal: #d6d0ca;
+  --color-brown-normal-hover: #6e5e4b;
+  --color-brown-normal-active: #625342;
+  --color-brown-dark: #5c4e3e;
+  --color-brown-dark-hover: #493e32;
+  --color-brown-dark-active: #372f25;
+  --color-brown-darker: #2b241d;
+
+  --color-white-light: #fffffe;
+  --color-white-light-hover: #fffefe;
+  --color-white-light-active: #fffefc;
+  --color-white-normal: #fffbf6;
+  --color-white-normal-hover: #e6e2dd;
+  --color-white-normal-active: #ccc9c5;
+  --color-white-dark: #bfbcb9;
+  --color-white-dark-hover: #999794;
+  --color-white-dark-active: #73716f;
+  --color-white-darker: #595856;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: 'Pretendard';
+    background-color: #fffbf6;
+    box-sizing: border-box;
+  }
+}
