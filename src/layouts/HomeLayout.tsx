@@ -3,10 +3,13 @@ import Navbar from '@/components/Navbar/Navbar';
 
 const HomeLayout = () => {
   return (
-    <>
+    <div className="flex flex-col h-dvh">
       <Navbar />
-      <Outlet />
-    </>
+
+      <div className="flex-1">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
