@@ -26,13 +26,13 @@ export function AuthField({ label, errorText, ...inputProps }: AuthFieldProps) {
 
   return (
     <div className="mb-4 flex gap-7 items-center mr-[70px]">
-      <label className="w-[83px] text-[24px] text-brown-darker text-end">{label}</label>
+      <label className="text-[24px] text-brown-darker text-end">{label}</label>
       <div>
         <input
           {...inputProps}
           className={`w-[566px] h-[70px] rounded-[20px] border px-[27px] py-[23px] text-[20px] outline-none bg-white-light placeholder:text-brown-light-active ${hasError ? 'border-error' : 'border-brown-darker'}`}
         />
-        {hasError && <p className="mt-[13px] text-[20px] text-error">{errorText}</p>}
+        {hasError && <p className="mt-[13px] text-[20px] text-error text-end">{errorText}</p>}
       </div>
     </div>
   );

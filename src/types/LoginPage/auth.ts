@@ -57,11 +57,13 @@ export interface AuthState {
  * @interface AuthLayoutProps
  * @property {string} title - 인증 레이아웃에 표시될 제목
  * @property {ReactNode} children - 인증 레이아웃 내부에 렌더링될 자식 컴포넌트
+ * @property {'login' | 'signup'} [variant] - 인증 타입을 지정하는 선택적 변형 (로그인 또는 회원가입)
  */
 
 export interface AuthLayoutProps {
   title: string;
   children: ReactNode;
+  variant?: 'login' | 'signup';
 }
 
 /**
