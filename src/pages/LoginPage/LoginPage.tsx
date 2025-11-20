@@ -21,7 +21,7 @@ export default function LoginPage() {
 
   return (
     <AuthLayout title="로그인">
-      <form onSubmit={handleSubmit} className="w-full flex flex-col items-end">
+      <form onSubmit={handleSubmit} className="flex flex-col items-end mr-12">
         <AuthField
           label="이메일"
           type="email"
