@@ -22,7 +22,7 @@ const NicknameField = ({ value, error, checked, loading, onChange, onCheck }: Ni
           </button>
         </div>
         {error && <p className="mt-[13px] text-[20px] text-error text-end">{error}</p>}
-        {!error && checked && <p className="mt-[13px] text-[20px]">사용 가능한 닉네임입니다.</p>}
+        {!error && checked && <p className="mt-[13px] text-[20px] text-end">사용 가능한 닉네임입니다.</p>}
       </div>
     </div>
   );
