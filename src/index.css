@@ -68,7 +68,7 @@
   --color-brown-light: #f2f0ee;
   --color-brown-light-hover: #ebe8e5;
   --color-brown-light-active: #d6d0ca;
-  --color-brown-normal: #d6d0ca;
+  --color-brown-normal: #7A6853;
   --color-brown-normal-hover: #6e5e4b;
   --color-brown-normal-active: #625342;
   --color-brown-dark: #5c4e3e;
@@ -86,6 +86,7 @@
   --color-white-dark-hover: #999794;
   --color-white-dark-active: #73716f;
   --color-white-darker: #595856;
+  --color-error: #FF695C;
 }
 
 @layer base {
