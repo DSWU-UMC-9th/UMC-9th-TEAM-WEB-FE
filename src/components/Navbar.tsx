@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/hooks/stores/useAuthStore';
 
 const LINKS = [
   { id: 1, label: '메인 화면', to: '/' },
@@ -13,6 +14,13 @@ const LINKS = [
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   // 로그인, 회원가입 페이지에서는 네비게이션 바 렌더링 X
   if (pathname === '/login' || pathname === '/signup') {
@@ -24,14 +32,39 @@ const Navbar = () => {
       <p className="text-white-dark">
         {'<'} 예시 네비게이션 바 입니다. 담당자가 추후 디자인 수정해주세요~~ {'>'}
       </p>
-      {LINKS.map((link) => (
-        <Link
-          key={link.id}
-          to={link.to}
-          className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
-          {link.label}
-        </Link>
-      ))}
+      {LINKS.map((link) => {
+        if (link.id === 2) {
+          if (isLoggedIn) {
+            return (
+              <button
+                key="logout"
+                type="button"
+                onClick={handleLogout}
+                className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
+                로그아웃
+              </button>
+            );
+          }
+
+          return (
+            <Link
+              key={link.id}
+              to={link.to}
+              className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
+              {link.label}
+            </Link>
+          );
+        }
+
+        return (
+          <Link
+            key={link.id}
+            to={link.to}
+            className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
+            {link.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 };

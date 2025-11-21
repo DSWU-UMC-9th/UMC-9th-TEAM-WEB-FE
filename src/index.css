@@ -96,4 +96,28 @@
     background-color: #fffbf6;
     box-sizing: border-box;
   }
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;    
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;            
+  }
+
+  @keyframes quote-flip {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-quote-flip {
+    animation: quote-flip 0.4s ease both;
+  }
+}
 }
