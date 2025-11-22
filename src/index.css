@@ -87,6 +87,16 @@
   --color-white-dark-active: #73716f;
   --color-white-darker: #595856;
   --color-error: #FF695C;
+
+  --animate-quote-flip: quote-flip 0.4s ease both;
+    @keyframes quote-flip {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+  }
 }
 
 @layer base {
@@ -96,28 +106,13 @@
     background-color: #fffbf6;
     box-sizing: border-box;
   }
-
-@layer utilities {
-  .no-scrollbar {
-    -ms-overflow-style: none; 
-    scrollbar-width: none;    
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;            
-  }
-
-  @keyframes quote-flip {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .animate-quote-flip {
-    animation: quote-flip 0.4s ease both;
-  }
 }
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -5,7 +5,7 @@ import { useHomeStore } from '@/hooks/stores/useHomeStore';
 import MyLibrarySection from '@/pages/HomePage/components/MyLibrarySection';
 import HotQuoteSection from '@/pages/HomePage/components/HotQuoteSection';
 import KeywordDiscussionSection from '@/pages/HomePage/components/KeywordDiscussionSection';
-import { useRotatingHotQuote } from '@/hooks/home/useRotatingHotQuote';
+import { useRotatingHotQuote } from '@/hooks/HomePage/useRotatingHotQuote';
 
 const HomePage = () => {
   const navigate = useNavigate();
