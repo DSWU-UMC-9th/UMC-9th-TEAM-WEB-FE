@@ -20,7 +20,7 @@ import type { MyLibraryBookCardProps } from '@/types/HomePage/home';
 
 const MyLibraryBookCard = ({ book, onKeywordClick }: MyLibraryBookCardProps) => {
   return (
-    <div className="group relative h-[444px] w-[300px] shrink-0 cursor-pointer overflow-hidden bg-gray-200 shadow-md">
+    <div className="group relative h-[444px] w-[300px] shrink-0 cursor-pointer overflow-hidden bg-gray-200 shadow-md no-scrollbar">
       <img src={book.coverImageUrl} alt={book.title} className="h-full w-full object-cover" />
 
       <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/50" />

@@ -41,10 +41,7 @@ const MyLibrarySection = ({ isLoggedIn, loading, error, books, onKeywordClick }:
         {isLoggedIn && !loading && error && <p className="text-[32px] text-error">{error}</p>}
 
         {isLoggedIn && !loading && !error && books.length === 0 && (
-          <button
-            type="button"
-            className="flex flex-col items-center justify-center text-brown-sub"
-            onClick={() => navigate('/post')}>
+          <button type="button" className="flex flex-col items-center justify-center" onClick={() => navigate('/post')}>
             <div className="mb-[18px] p-4 flex h-[81px] w-[81px] items-center justify-center rounded-full bg-brown-light">
               <PlusIcon className="h-[32.667px] w-[32.667px]" />
             </div>
@@ -54,7 +51,7 @@ const MyLibrarySection = ({ isLoggedIn, loading, error, books, onKeywordClick }:
 
         {isLoggedIn && !loading && !error && books.length > 0 && (
           <div className="flex w-full flex-col justify-start gap-4">
-            <div className={`flex w-full gap-4 overflow-x-auto pb-2 ${bookListJustifyClass}`}>
+            <div className={`no-scrollbar flex w-full gap-4 overflow-x-auto pb-2 ${bookListJustifyClass}`}>
               {books.map((book) => (
                 <MyLibraryBookCard key={book.id} book={book} onKeywordClick={onKeywordClick} />
               ))}
