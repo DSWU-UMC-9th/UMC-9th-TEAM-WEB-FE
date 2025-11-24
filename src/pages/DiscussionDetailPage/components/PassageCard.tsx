@@ -35,7 +35,9 @@ const PassageCard = ({ passage, isActive, title, onClick }: PassageCardProps) =>
         className="cursor-pointer rounded-[20px] bg-brown-normal pt-[34px] px-9 text-[24px] font-normal leading-relaxed text-brown-light">
         <p>{passage.text}</p>
 
-        <p className="mt-4 mb-[25px] text-right text-[20px] font-bold text-white-light">- ⟪{title}⟫ {passage.reference}</p>
+        <p className="mt-4 mb-[25px] text-right text-[20px] font-bold text-white-light">
+          - ⟪{title}⟫ {passage.reference}
+        </p>
       </article>
 
       {isActive && <CommentInput />}

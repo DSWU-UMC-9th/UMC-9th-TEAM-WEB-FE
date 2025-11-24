@@ -17,14 +17,29 @@
  * ```
  */
 
+import { useEffect, useRef } from 'react';
 import type { KeywordDiscussionSectionProps } from '@/types/HomePage/home';
 import { useLocation } from 'react-router-dom';
 import { useHomeStore } from '@/hooks/stores/useHomeStore';
 
 const KeywordDiscussionSection = ({ keywords, onKeywordClick }: KeywordDiscussionSectionProps) => {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const selectedButtonRef = useRef<HTMLButtonElement | null>(null);
+
   const location = useLocation();
   const isDiscussionPage = location.pathname.startsWith('/discussion');
   const { selectedKeyword } = useHomeStore();
+
+  useEffect(() => {
+    if (!selectedKeyword) return;
+    if (!selectedButtonRef.current) return;
+
+    selectedButtonRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+  }, [selectedKeyword]);
 
   return (
     <section className="mx-[67px]">
@@ -42,13 +57,16 @@ const KeywordDiscussionSection = ({ keywords, onKeywordClick }: KeywordDiscussio
 
         {!isDiscussionPage && <div className="ml-11 mr-10 w-0.5 h-[38px] bg-brown-darker" />}
 
-        <div className="flex h-full items-center flex-1 min-w-0 gap-6 px-[18px] overflow-x-scroll overflow-y-visible no-scrollbar">
+        <div
+          ref={scrollContainerRef}
+          className="flex h-full items-center flex-1 min-w-0 gap-6 px-[18px] overflow-x-scroll overflow-y-visible no-scrollbar">
           {keywords.map((keyword) => {
             const isSelected = selectedKeyword === keyword.name;
 
             return (
               <button
                 key={keyword.id}
+                ref={isSelected ? selectedButtonRef : undefined}
                 type="button"
                 onClick={() => onKeywordClick(keyword.name)}
                 className={`h-[62px] w-[158px] shrink-0 rounded-[73px] text-[24px] drop-shadow-[0_0_10px_rgba(0,0,0,0.15)] ${
