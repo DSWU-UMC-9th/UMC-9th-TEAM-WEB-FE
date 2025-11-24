@@ -6,24 +6,23 @@ type BookSummaryProps = {
 
 const BookSummary = ({ detail }: BookSummaryProps) => {
   return (
-    <aside className="flex w-64 flex-col items-center rounded-3xl bg-brown-dark px-6 py-8">
-      {/* 책 표지 */}
-      <div className="mb-4 h-64 w-40 overflow-hidden rounded-md">
+    <aside className="sticky top-[133px] h-fit flex min-w-[540px] flex-col items-center rounded-[20px] bg-brown-normal py-[61px] px-[91px]">
+      <div className="mb-14 h-[452px] w-[300px] overflow-hidden rounded-md">
         <img src={detail.coverImageUrl} alt={detail.title} className="h-full w-full object-cover" />
       </div>
 
-      {/* 제목, 작가 */}
-      <p className="text-sm font-semibold text-brown-light">&lt;{detail.title}&gt;</p>
-      <p className="mt-1 text-xs text-brown-light">{detail.author}</p>
+      <p className="text-[36px] font-bold text-brown-light">&lt;{detail.title}&gt;</p>
+      <p className="mt-1.5 text-[24px] font-normal text-brown-light">{detail.author}</p>
 
-      {/* 태그 리스트 */}
-      <div className="mt-5 flex flex-wrap justify-center gap-2">
+      <div className="mt-[30px] grid grid-cols-2 gap-x-[42px] gap-y-6">
         {detail.tags.map((tag) => (
           <button
             key={tag}
             type="button"
-            className="rounded-full bg-brown-light-hover px-3 py-1 text-[11px] font-medium text-brown-dark">
-            #{tag}
+            className="flex justify-center items-center h-[62px] w-[158px]  rounded-[73px]  bg-brown-light ">
+            <p className="w-[138px] whitespace-nowrap overflow-hidden text-ellipsis shrink-0 text-[24px] font-bold text-brown-darker">
+              {tag}
+            </p>
           </button>
         ))}
       </div>

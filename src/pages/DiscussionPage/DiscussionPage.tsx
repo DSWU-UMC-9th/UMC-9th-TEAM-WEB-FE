@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useHomeStore } from '@/hooks/stores/useHomeStore';
 import HotQuoteSection from '@/pages/HomePage/components/HotQuoteSection';
 import KeywordDiscussionSection from '@/pages/HomePage/components/KeywordDiscussionSection';
@@ -9,6 +10,7 @@ import type { HotQuote } from '@/types/HomePage/home';
 import BookList from '@/pages/DiscussionPage/components/BookList';
 
 const DiscussionPage = () => {
+  const navigate = useNavigate();
   const { selectedKeyword, hotQuote, keywords, setSelectedKeyword, fetchHomeData, loading, error } = useHomeStore();
   const rotatingHotQuote = useRotatingHotQuote(hotQuote, 5000);
 
@@ -37,7 +39,10 @@ const DiscussionPage = () => {
   }, [selectedKeyword]);
 
   const handleHotQuoteClick = () => {
-    if (!rotatingHotQuote) return;
+    if (!effectiveHotQuote) return;
+    navigate(`/discussion/${effectiveHotQuote.bookId}`, {
+      state: { initialQuoteId: effectiveHotQuote.id },
+    });
   };
 
   const handleKeywordSelect = (keyword: string) => {
@@ -45,7 +50,7 @@ const DiscussionPage = () => {
   };
 
   return (
-    <main className="mx-auto px-10 pt-12 overflow-hidden">
+    <main className="mx-auto px-[131px] pt-[153px] overflow-hidden">
       <section className="mb-[102px] text-center">
         <h1 className="text-[48px] font-bold text-brown-dark">토론 광장</h1>
         <div className="mt-[7px] h-[3px] w-[204px] bg-brown-dark mx-auto" />

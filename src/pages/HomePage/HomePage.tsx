@@ -26,7 +26,9 @@ const HomePage = () => {
 
   const handleHotQuoteClick = () => {
     if (!rotatingHotQuote) return;
-    navigate(`/discussion/${rotatingHotQuote.id}`);
+    navigate(`/discussion/${rotatingHotQuote.bookId}`, {
+      state: { initialQuoteId: rotatingHotQuote.id },
+    });
   };
 
   return (

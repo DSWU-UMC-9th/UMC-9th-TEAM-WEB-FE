@@ -27,9 +27,13 @@ export interface Book {
  */
 
 export interface HotQuote {
+  // id: number;
+  // content: string;
+  // bookTitle: string;
   id: number;
-  content: string;
+  bookId: number;
   bookTitle: string;
+  content: string;
 }
 
 /**
