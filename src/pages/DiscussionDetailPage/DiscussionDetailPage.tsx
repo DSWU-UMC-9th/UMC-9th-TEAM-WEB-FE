@@ -67,7 +67,7 @@ const DiscussionDetailPage = () => {
 
         <div className="flex flex-1 flex-col items-center">
           <h1 className="text-3xl font-semibold text-brown-dark">토론 광장</h1>
-          <div className="mt-2 h-[2px] w-16 bg-brown-dark" />
+          <div className="mt-2 h-0.5 w-16 bg-brown-dark" />
         </div>
       </section>
 

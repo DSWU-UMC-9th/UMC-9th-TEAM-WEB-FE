@@ -1,11 +1,5 @@
 import BookCard from './Bookcard';
-
-export type Book = {
-  id: number;
-  title: string;
-  author: string;
-  coverImageUrl: string;
-};
+import type { Book } from '@/types/HomePage/home';
 
 type BookListProps = {
   books: Book[];
@@ -13,9 +7,9 @@ type BookListProps = {
 
 export default function BookList({ books }: BookListProps) {
   return (
-    <section className="mt-10">
-      <div className="rounded-xl bg-brown-light px-8 py-6">
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+    <section className="mt-[94px] flex justify-center">
+      <div className="bg-brown-light w-[1778px] h-[1310px] py-[202px] px-[219px] overflow-y-scroll">
+        <div className="grid grid-cols-4 gap-x-[109px] gap-y-[180px] ">
           {books.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
