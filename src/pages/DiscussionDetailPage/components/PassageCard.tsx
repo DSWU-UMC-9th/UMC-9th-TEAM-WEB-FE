@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import type { Passage } from '../DiscussionDetailPage';
-import CommentItem, { type PassageComment } from './CommentItem';
-import CommentInput from './CommentInput';
+import type { Passage } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
+import CommentItem, { type PassageComment } from '@/pages/DiscussionDetailPage/components/CommentItem';
+import CommentInput from '@/pages/DiscussionDetailPage/components/CommentInput';
 
 type PassageCardProps = {
   passage: Passage;

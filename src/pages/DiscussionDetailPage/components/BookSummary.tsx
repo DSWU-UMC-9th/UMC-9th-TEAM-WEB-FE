@@ -1,4 +1,4 @@
-import type { BookDetail } from '../DiscussionDetailPage';
+import type { BookDetail } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
 
 type BookSummaryProps = {
   detail: BookDetail;

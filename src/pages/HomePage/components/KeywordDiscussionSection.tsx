@@ -18,8 +18,8 @@
  */
 
 import { useEffect, useRef } from 'react';
-import type { KeywordDiscussionSectionProps } from '@/types/HomePage/home';
 import { useLocation } from 'react-router-dom';
+import type { KeywordDiscussionSectionProps } from '@/types/HomePage/home';
 import { useHomeStore } from '@/hooks/stores/useHomeStore';
 
 const KeywordDiscussionSection = ({ keywords, onKeywordClick }: KeywordDiscussionSectionProps) => {
@@ -61,7 +61,7 @@ const KeywordDiscussionSection = ({ keywords, onKeywordClick }: KeywordDiscussio
           ref={scrollContainerRef}
           className="flex h-full items-center flex-1 min-w-0 gap-6 px-[18px] overflow-x-scroll overflow-y-visible no-scrollbar">
           {keywords.map((keyword) => {
-            const isSelected = selectedKeyword === keyword.name;
+            const isSelected = isDiscussionPage && selectedKeyword === keyword.name;
 
             return (
               <button

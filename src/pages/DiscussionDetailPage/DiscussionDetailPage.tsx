@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import BookSummary from './components/BookSummary';
-import PassageList from './components/PassageList';
+import BookSummary from '@/pages/DiscussionDetailPage/components/BookSummary';
+import PassageList from '@/pages/DiscussionDetailPage/components/PassageList';
 
 import { DUMMY_BOOKS } from '@/data/booksDummy';
 import { BOOK_QUOTE_NOTES_DUMMY } from '@/data/bookQuoteNotesDummy';

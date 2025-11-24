@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { Passage } from '../DiscussionDetailPage';
-import PassageCard from './PassageCard';
+import type { Passage } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
+import PassageCard from '@/pages/DiscussionDetailPage/components/PassageCard';
 
 type PassageListProps = {
   passages: Passage[];
