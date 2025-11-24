@@ -1,4 +1,4 @@
-import BookCard from './Bookcard';
+import BookCard from '@/pages/DiscussionPage/components/Bookcard';
 import type { Book } from '@/types/HomePage/home';
 
 type BookListProps = {

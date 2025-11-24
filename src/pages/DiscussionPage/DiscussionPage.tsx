@@ -6,7 +6,7 @@ import { useRotatingHotQuote } from '@/hooks/HomePage/useRotatingHotQuote';
 import { DUMMY_BOOKS } from '@/data/booksDummy';
 import type { HotQuote } from '@/types/HomePage/home';
 
-import BookList from './components/BookList';
+import BookList from '@/pages/DiscussionPage/components/BookList';
 
 const DiscussionPage = () => {
   const { selectedKeyword, hotQuote, keywords, setSelectedKeyword, fetchHomeData, loading, error } = useHomeStore();
