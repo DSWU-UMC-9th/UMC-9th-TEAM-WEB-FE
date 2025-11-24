@@ -1,13 +1,14 @@
 // src/pages/LibraryDetailPage/mocks/mockLibraryDetails.ts
 import type { LibraryBookDetail } from '@/types/LibraryDetailPage/libraryDetail';
 
-import cover1 from '@/pages/LibraryPage/mocks/img/1.png';
-import cover2 from '@/pages/LibraryPage/mocks/img/2.png';
-import cover3 from '@/pages/LibraryPage/mocks/img/3.png';
-import cover4 from '@/pages/LibraryPage/mocks/img/4.png';
-import cover5 from '@/pages/LibraryPage/mocks/img/5.png';
-import cover6 from '@/pages/LibraryPage/mocks/img/6.png';
-import cover7 from '@/pages/LibraryPage/mocks/img/7.png';
+import cover1 from '../../LibraryPage/mocks/img/1.png';
+import cover2 from '../../LibraryPage/mocks/img/2.png';
+import cover3 from '../../LibraryPage/mocks/img/3.png';
+import cover4 from '../../LibraryPage/mocks/img/4.png';
+import cover5 from '../../LibraryPage/mocks/img/5.png';
+import cover6 from '../../LibraryPage/mocks/img/6.png';
+import cover7 from '../../LibraryPage/mocks/img/7.png';
+
 
 export const MOCK_LIBRARY_DETAILS: LibraryBookDetail[] = [
   {
