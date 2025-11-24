@@ -17,10 +17,16 @@
  */
 
 import type { MyLibraryBookCardProps } from '@/types/HomePage/home';
+import type { MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MyLibraryBookCard = ({ book, onKeywordClick }: MyLibraryBookCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="group relative h-[444px] w-[300px] shrink-0 cursor-pointer overflow-hidden bg-gray-200 shadow-md">
+    <div
+      onClick={() => navigate(`/discussion/${book.id}`)}
+      className="group relative h-[444px] w-[300px] shrink-0 cursor-pointer overflow-hidden bg-gray-200 shadow-md">
       <img src={book.coverImageUrl} alt={book.title} className="h-full w-full object-cover" />
 
       <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/50" />
@@ -31,7 +37,10 @@ const MyLibraryBookCard = ({ book, onKeywordClick }: MyLibraryBookCardProps) => 
             <button
               key={keyword}
               type="button"
-              onClick={() => onKeywordClick(keyword)}
+              onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                e.stopPropagation();
+                onKeywordClick(keyword);
+              }}
               className="whitespace-nowrap text-ellipsis pointer-events-auto w-full overflow-hidden rounded-[40px] bg-brown-light-hover box-shadow-[0_0_4px_rgba(0,0,0,0.25)] px-[19px] py-[13px] text-[20px] text-brown-darker font-bold">
               {keyword}
             </button>

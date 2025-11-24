@@ -4,6 +4,7 @@
  * @interface Book
  * @property {number} id - 도서의 고유 식별자
  * @property {string} title - 도서의 제목
+ * @property {string} author - 도서의 작가
  * @property {string} coverImageUrl - 도서 표지 이미지의 URL
  * @property {string[]} keywords - 분류 또는 검색 목적으로 도서와 연관된 키워드 배열
  */
@@ -11,6 +12,7 @@
 export interface Book {
   id: number;
   title: string;
+  author: string;
   coverImageUrl: string;
   keywords: string[];
 }
@@ -25,9 +27,13 @@ export interface Book {
  */
 
 export interface HotQuote {
+  // id: number;
+  // content: string;
+  // bookTitle: string;
   id: number;
-  content: string;
+  bookId: number;
   bookTitle: string;
+  content: string;
 }
 
 /**
@@ -80,6 +86,7 @@ export interface HomeState {
 export interface HotQuoteSectionProps {
   hotQuote: HotQuote | null;
   onClick: () => void;
+  isLoading?: boolean;
 }
 
 /**
@@ -126,3 +133,5 @@ export interface MyLibrarySectionProps {
   books: Book[];
   onKeywordClick: (keyword: string) => void;
 }
+
+export type HotQuoteSource = HotQuote | HotQuote[] | null | undefined;
