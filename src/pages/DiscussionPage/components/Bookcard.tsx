@@ -1,9 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import type { Book } from '@/types/HomePage/home';
-
-type BookCardProps = {
-  book: Book;
-};
+import type { BookCardProps } from '@/types/DiscussionPage/discussion';
 
 export default function BookCard({ book }: BookCardProps) {
   const navigate = useNavigate();

@@ -1,17 +1,7 @@
 import { useState } from 'react';
-
-export type PassageComment = {
-  id: number;
-  nickname: string;
-  createdAt: string;
-  content: string;
-};
+import type { CommentItemProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const MAX_COMMENT_PREVIEW_LENGTH = 68;
-
-type CommentItemProps = {
-  comment: PassageComment;
-};
 
 const CommentItem = ({ comment }: CommentItemProps) => {
   const [expanded, setExpanded] = useState(false);

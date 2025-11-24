@@ -1,8 +1,5 @@
 import { useState } from 'react';
-
-type CommentInputProps = {
-  onSubmit?: (value: string) => void;
-};
+import type { CommentInputProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const CommentInput = ({ onSubmit }: CommentInputProps) => {
   const [value, setValue] = useState('');

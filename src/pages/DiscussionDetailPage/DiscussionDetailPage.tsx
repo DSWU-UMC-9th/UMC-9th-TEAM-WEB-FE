@@ -5,28 +5,7 @@ import PassageList from '@/pages/DiscussionDetailPage/components/PassageList';
 import { DUMMY_BOOKS } from '@/data/booksDummy';
 import { BOOK_QUOTE_NOTES_DUMMY } from '@/data/bookQuoteNotesDummy';
 
-export type PassageComment = {
-  id: number;
-  nickname: string;
-  createdAt: string;
-  content: string;
-};
-
-export type Passage = {
-  id: number;
-  text: string;
-  reference: string;
-  content: PassageComment[];
-};
-
-export type BookDetail = {
-  id: number;
-  title: string;
-  author: string;
-  coverImageUrl: string;
-  tags: string[];
-  passages: Passage[];
-};
+import type { Passage, BookDetail } from '@/types/DiscussionDetailPage/bookDetail';
 
 const DiscussionDetailPage = () => {
   const { id } = useParams<{ id: string }>();

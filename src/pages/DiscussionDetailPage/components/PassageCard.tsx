@@ -1,14 +1,7 @@
 import { useEffect, useRef } from 'react';
-import type { Passage } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
-import CommentItem, { type PassageComment } from '@/pages/DiscussionDetailPage/components/CommentItem';
+import CommentItem from '@/pages/DiscussionDetailPage/components/CommentItem';
 import CommentInput from '@/pages/DiscussionDetailPage/components/CommentInput';
-
-type PassageCardProps = {
-  passage: Passage;
-  title: string;
-  isActive: boolean;
-  onClick: () => void;
-};
+import type { PassageComment, PassageCardProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const PassageCard = ({ passage, isActive, title, onClick }: PassageCardProps) => {
   const articleRef = useRef<HTMLElement | null>(null);

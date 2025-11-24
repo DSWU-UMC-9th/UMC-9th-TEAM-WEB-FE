@@ -1,8 +1,4 @@
-import type { BookDetail } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
-
-type BookSummaryProps = {
-  detail: BookDetail;
-};
+import type { BookSummaryProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const BookSummary = ({ detail }: BookSummaryProps) => {
   return (

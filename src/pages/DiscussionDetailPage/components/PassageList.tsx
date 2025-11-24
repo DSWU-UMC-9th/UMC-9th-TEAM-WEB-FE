@@ -1,12 +1,6 @@
 import { useState } from 'react';
-import type { Passage } from '@/pages/DiscussionDetailPage/DiscussionDetailPage';
 import PassageCard from '@/pages/DiscussionDetailPage/components/PassageCard';
-
-type PassageListProps = {
-  passages: Passage[];
-  title: string;
-  initialActiveId?: number | null;
-};
+import type { PassageListProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const PassageList = ({ passages, initialActiveId, title }: PassageListProps) => {
   const [activeId, setActiveId] = useState<number | null>(initialActiveId ?? null);

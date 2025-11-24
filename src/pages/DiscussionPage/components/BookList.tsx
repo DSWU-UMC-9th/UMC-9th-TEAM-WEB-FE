@@ -1,9 +1,5 @@
 import BookCard from '@/pages/DiscussionPage/components/Bookcard';
-import type { Book } from '@/types/HomePage/home';
-
-type BookListProps = {
-  books: Book[];
-};
+import type { BookListProps } from '@/types/DiscussionPage/discussion';
 
 export default function BookList({ books }: BookListProps) {
   return (
