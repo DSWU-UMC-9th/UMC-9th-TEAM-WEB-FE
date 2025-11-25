@@ -2,7 +2,7 @@ import type { BookSummaryProps } from '@/types/DiscussionDetailPage/bookDetail';
 
 const BookSummary = ({ detail }: BookSummaryProps) => {
   return (
-    <aside className="sticky top-[133px] h-fit flex min-w-[540px] flex-col items-center rounded-[20px] bg-brown-normal py-[61px] px-[91px]">
+    <aside className="sticky top-0 h-fit flex min-w-[540px] flex-col items-center rounded-[20px] bg-brown-normal py-[61px] px-[91px]">
       <div className="mb-14 h-[452px] w-[300px] overflow-hidden rounded-md">
         <img src={detail.coverImageUrl} alt={detail.title} className="h-full w-full object-cover" />
       </div>
