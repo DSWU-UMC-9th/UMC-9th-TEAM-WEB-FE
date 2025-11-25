@@ -2,12 +2,12 @@
 
 const LibraryHeader = () => {
     return (
-      <header className="mb-10 flex flex-col items-center justify-center">
-        <h2 className="text-[28px] md:text-[32px] font-semibold text-brown-dark">
+      <header className="mb-[138px] flex flex-col items-center justify-center">
+        <h2 className="text-[48px] font-bold text-brown-dark">
           나의 서재
         </h2>
         {/* 타이틀 아래 작은 라인 */}
-        <div className="mt-3 h-[2px] w-[140px] bg-brown-dark" />
+        <div className="mt-[4px] h-[3px] w-[204px] bg-brown-dark" />
       </header>
     );
   };

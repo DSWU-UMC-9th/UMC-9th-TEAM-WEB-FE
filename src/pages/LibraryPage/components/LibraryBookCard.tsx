@@ -23,13 +23,12 @@ const LibraryBookCard = ({ book }: LibraryBookCardProps) => {
       onClick={handleClick}
       className="
         relative
-        w-full  
-        max-w-[260px] 
+        w-[300px]
+        h-[468px] 
         aspect-[3/4.4]
         overflow-hidden
         bg-gray-200
-        shadow-[0_0_20px_rgba(0,0,0,0.3)]
-        rounded-[18px]
+        shadow-[0_4px_30px_5px_rgba(0,0,0,0.25)]
       "
     >
       <img
