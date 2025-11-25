@@ -1,5 +1,11 @@
+type ErrorResponse = {
+  errorCode: string;
+  reason: string;
+  data: object;
+};
+
 export type CommonResponse<T> = {
-  statusCode: number;
-  message: string;
-  data: T;
+  resultType: string;
+  error: null | ErrorResponse;
+  success: { data: T } | null;
 };
