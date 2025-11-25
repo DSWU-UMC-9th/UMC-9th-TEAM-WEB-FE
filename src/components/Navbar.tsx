@@ -1,21 +1,17 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/hooks/stores/useAuthStore';
+import LogoIcon from '@assets/Logo.svg?react';
 
 const LINKS = [
-  { id: 1, label: '메인 화면', to: '/' },
-  { id: 2, label: '로그인', to: '/login' },
-  { id: 3, label: '회원가입', to: '/signup' },
-  { id: 4, label: '나의 서재 페이지', to: '/library' },
-  { id: 5, label: '나의 서재 페이지 상세', to: '/library/1' },
-  { id: 6, label: '도서 추가 페이지', to: '/post' },
-  { id: 7, label: '토론 광장 페이지', to: '/discussion' },
-  { id: 8, label: '토론 광장 상세 페이지', to: '/discussion/1' },
+  { id: 1, label: '홈', to: '/' },
+  { id: 2, label: '나의 서재', to: '/library' },
+  { id: 3, label: '토론 광장', to: '/discussion' },
 ];
 
 const Navbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { isLoggedIn, logout } = useAuthStore();
+  const { isLoggedIn, logout, user } = useAuthStore();
 
   const handleLogout = () => {
     logout();
@@ -28,43 +24,41 @@ const Navbar = () => {
   }
 
   return (
-    <nav>
-      <p className="text-white-dark">
-        {'<'} 예시 네비게이션 바 입니다. 담당자가 추후 디자인 수정해주세요~~ {'>'}
-      </p>
-      {LINKS.map((link) => {
-        if (link.id === 2) {
-          if (isLoggedIn) {
-            return (
-              <button
-                key="logout"
-                type="button"
-                onClick={handleLogout}
-                className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
-                로그아웃
-              </button>
-            );
-          }
+    <nav
+      className={`bg-white-normal shadow-[0_1px_20px_0_rgba(0,0,0,0.15)] flex items-center gap-[min(50px,2vw)] py-[25px] px-[60px] ${isLoggedIn ? 'justify-between' : 'justify-start'}`}>
+      <LogoIcon className="max-w-[325px] object-contain cursor-pointer" onClick={() => navigate('/')} />
 
-          return (
-            <Link
-              key={link.id}
-              to={link.to}
-              className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
-              {link.label}
-            </Link>
-          );
-        }
-
-        return (
-          <Link
+      <div className="rounded-[95px] max-w-[1051px] px-[99px] w-full h-[75px] bg-white-normal-hover flex items-center justify-between text-brown-darker text-[31px] font-medium">
+        {LINKS.map((link) => (
+          <NavLink
             key={link.id}
             to={link.to}
-            className="flex font-bold text-brown-normal hover:text-brown-normal-hover duration-300">
+            className={({ isActive }) => `
+            ${isActive ? 'bg-white-light shadow-[0_0_10px_0_rgba(0,0,0,0.15)] rounded-[95px]' : ''} w-[187px] h-[59px] text-center flex justify-center items-center trnasition duration-500 ease
+            `}>
             {link.label}
-          </Link>
-        );
-      })}
+          </NavLink>
+        ))}
+      </div>
+
+      <div className="text-brown-normal text-[24px] font-normal text-center">
+        {isLoggedIn && (
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              if (window.confirm('로그아웃하시겠습니까?')) {
+                handleLogout();
+              }
+            }}>
+            {user?.nickname}님 반갑습니다!
+          </div>
+        )}
+        {!isLoggedIn && (
+          <div onClick={() => navigate('/login')} className="cursor-pointer">
+            로그인
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
