@@ -1,9 +1,6 @@
 // src/pages/PostBookPage/components/PostBookMetaSection.tsx
-import { useState } from 'react';
-
 const MAX_KEYWORDS = 3;
 
-// TODO: 나중에 백엔드에서 받아온 키워드 리스트로 교체
 const KEYWORD_OPTIONS = [
   { id: 1, label: '소설' },
   { id: 2, label: '시' },
@@ -37,35 +34,80 @@ const KEYWORD_OPTIONS = [
   { id: 30, label: '심리' },
 ];
 
-const PostBookMetaSection = () => {
-  // 선택된 키워드 id 배열
-  const [selectedKeywordIds, setSelectedKeywordIds] = useState<number[]>([]);
+interface Props {
+  title: string;
+  author: string;
+  pageCount: string;
+  readingMinutes: string;
+  selectedKeywordIds: number[];
 
+  onChangeTitle: (v: string) => void;
+  onChangeAuthor: (v: string) => void;
+  onChangePageCount: (v: string) => void;
+  onChangeReadingMinutes: (v: string) => void;
+  onChangeKeywords: (ids: number[]) => void;
+}
+
+const PostBookMetaSection = ({
+  title,
+  author,
+  pageCount,
+  readingMinutes,
+  selectedKeywordIds,
+  onChangeTitle,
+  onChangeAuthor,
+  onChangePageCount,
+  onChangeReadingMinutes,
+  onChangeKeywords,
+}: Props) => {
   const handleToggleKeyword = (id: number) => {
-    setSelectedKeywordIds((prev) => {
-      const isSelected = prev.includes(id);
+    const isSelected = selectedKeywordIds.includes(id);
 
-      // 이미 선택된 경우 → 해제
-      if (isSelected) {
-        return prev.filter((k) => k !== id);
-      }
+    if (isSelected) {
+      onChangeKeywords(selectedKeywordIds.filter((k) => k !== id));
+      return;
+    }
 
-      // 새로 선택하는 경우인데 이미 3개라면 → 무시
-      if (prev.length >= MAX_KEYWORDS) {
-        return prev;
-      }
+    if (selectedKeywordIds.length >= MAX_KEYWORDS) return;
 
-      // 새로 추가
-      return [...prev, id];
-    });
+    onChangeKeywords([...selectedKeywordIds, id]);
   };
-
-  // TODO: 나중에 폼 submit 할 때 selectedKeywordIds를 함께 전송
-  // 예: body.keywords = selectedKeywordIds;
 
   return (
     <section className="w-full rounded-[18px] border border-brown-darker bg-white-light px-10 py-8 shadow-[0_0_25px_rgba(0,0,0,0.06)]">
       <div className="flex flex-col gap-6">
+        {/* 책 제목 */}
+        <div className="flex items-center gap-8">
+          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+            <span>|</span>
+            <span>책 제목</span>
+          </span>
+
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => onChangeTitle(e.target.value)}
+            placeholder="책 제목을 입력해주세요."
+            className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
+          />
+        </div>
+
+        {/* 저자 */}
+        <div className="flex items-center gap-8">
+          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+            <span>|</span>
+            <span>저자</span>
+          </span>
+
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => onChangeAuthor(e.target.value)}
+            placeholder="저자를 입력해주세요."
+            className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
+          />
+        </div>
+
         {/* 페이지 수 */}
         <div className="flex items-center gap-8">
           <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
@@ -75,6 +117,8 @@ const PostBookMetaSection = () => {
 
           <input
             type="number"
+            value={pageCount}
+            onChange={(e) => onChangePageCount(e.target.value)}
             placeholder="책의 총 페이지 수를 입력해주세요."
             className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
           />
@@ -88,8 +132,10 @@ const PostBookMetaSection = () => {
           </span>
 
           <input
-            type="text"
-            placeholder="독서한 시간을 입력해주세요."
+            type="number"
+            value={readingMinutes}
+            onChange={(e) => onChangeReadingMinutes(e.target.value)}
+            placeholder="독서한 시간을 분 단위로 입력해주세요."
             className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
           />
         </div>
@@ -102,12 +148,10 @@ const PostBookMetaSection = () => {
           </span>
 
           <div className="flex-1 space-y-3">
-            {/* 안내 문구 (선택 개수 제한) */}
             <p className="text-[13px] text-brown-sub">
-              키워드는 한 권당 최대 {MAX_KEYWORDS}개까지 선택할 수 있습니다.
+              키워드는 최대 {MAX_KEYWORDS}개까지 선택할 수 있습니다.
             </p>
 
-            {/* 키워드 선택 배지 리스트 */}
             <div className="mt-1 flex flex-wrap gap-3">
               {KEYWORD_OPTIONS.map((keyword) => {
                 const isSelected = selectedKeywordIds.includes(keyword.id);

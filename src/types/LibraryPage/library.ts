@@ -14,4 +14,6 @@ export interface LibraryBook {
 
 export interface LibraryBookCardProps {
   book: LibraryBook;
+  onDeleteClick?: (book: LibraryBook) => void;
 }
+
