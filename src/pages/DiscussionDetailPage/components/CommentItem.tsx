@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { CommentItemProps } from '@/types/DiscussionDetailPage/bookDetail';
 
-const MAX_COMMENT_PREVIEW_LENGTH = 68;
+const MAX_COMMENT_PREVIEW_LENGTH = 100;
 
 const CommentItem = ({ comment }: CommentItemProps) => {
   const [expanded, setExpanded] = useState(false);
