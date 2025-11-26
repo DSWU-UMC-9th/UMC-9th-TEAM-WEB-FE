@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-white-normal shadow-[0_1px_20px_0_rgba(0,0,0,0.15)] flex items-center gap-[min(50px,2vw)] py-[25px] px-[60px] ${isLoggedIn ? 'justify-between' : 'justify-start'}`}>
+      className={`sticky top-0 z-10 bg-white-normal shadow-[0_1px_20px_0_rgba(0,0,0,0.15)] flex items-center gap-[min(50px,2vw)] py-[25px] px-[60px] ${isLoggedIn ? 'justify-between' : 'justify-start'}`}>
       <LogoIcon className="max-w-[325px] object-contain cursor-pointer" onClick={() => navigate('/')} />
 
       <div className="rounded-[95px] max-w-[1051px] px-[99px] w-full h-[75px] bg-white-normal-hover flex items-center justify-between text-brown-darker text-[31px] font-medium">

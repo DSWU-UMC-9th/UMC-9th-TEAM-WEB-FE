@@ -5,15 +5,15 @@ const PostBookSubmitBar = () => {
     };
   
     return (
-      <div className="mt-4 flex w-full justify-center">
+      <div className="mt-[70px] flex w-full justify-center">
         <button
           type="button"
           onClick={handleSubmit}
           className="
-            h-[52px] w-[180px]
+            px-[144px] py-[38px]
             rounded-full
             bg-brown-normal
-            text-[16px] font-semibold text-white
+            text-[36px] font-normal text-white
           "
         >
           저장하기

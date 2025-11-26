@@ -84,7 +84,7 @@ const DiscussionDetailPage = () => {
         </div>
       </section>
 
-      <section className="flex gap-[42px]">
+      <section className="flex gap-[42px] h-[907px] overflow-scroll no-scrollbar">
         <BookSummary detail={data} />
         <PassageList passages={data.passages} initialActiveId={initialActivePassageId} title={data.title} />
       </section>

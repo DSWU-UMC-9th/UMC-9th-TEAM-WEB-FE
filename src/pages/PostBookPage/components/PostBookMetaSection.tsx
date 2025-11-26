@@ -64,11 +64,11 @@ const PostBookMetaSection = () => {
   // 예: body.keywords = selectedKeywordIds;
 
   return (
-    <section className="w-full rounded-[18px] border border-brown-darker bg-white-light px-10 py-8 shadow-[0_0_25px_rgba(0,0,0,0.06)]">
+    <section className="w-full rounded-[20px] border-2 border-brown-darker bg-white-light px-[67px] py-[63px]">
       <div className="flex flex-col gap-6">
         {/* 페이지 수 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[71px]">
+          <span className="flex items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>페이지 수</span>
           </span>
@@ -76,13 +76,13 @@ const PostBookMetaSection = () => {
           <input
             type="number"
             placeholder="책의 총 페이지 수를 입력해주세요."
-            className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
+            className="h-[62px] w-full max-w-[337px] bg-brown-light px-[20px] py-[19px] text-[20px] text-brown-dark outline-none"
           />
         </div>
 
         {/* 시간 기록 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[71px]">
+          <span className="flex items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>시간 기록</span>
           </span>
@@ -90,25 +90,25 @@ const PostBookMetaSection = () => {
           <input
             type="text"
             placeholder="독서한 시간을 입력해주세요."
-            className="h-10 w-full max-w-[280px] rounded-xl bg-brown-light px-4 text-[14px] text-brown-dark outline-none placeholder:text-brown-sub"
+            className="h-[62px] w-full max-w-[337px] bg-brown-light px-[20px] py-[19px] text-[20px] text-brown-dark outline-none"
           />
         </div>
 
         {/* 키워드 */}
-        <div className="flex items-start gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-start flex-col">
+          <span className="flex items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>키워드</span>
+            {/* 안내 문구 (선택 개수 제한) */}
+            <p className="ml-[29px] text-[20px] font-normal text-error">
+              *최대 3개의 키워드를 선택해주세요
+            </p>
           </span>
 
           <div className="flex-1 space-y-3">
-            {/* 안내 문구 (선택 개수 제한) */}
-            <p className="text-[13px] text-brown-sub">
-              키워드는 한 권당 최대 {MAX_KEYWORDS}개까지 선택할 수 있습니다.
-            </p>
 
             {/* 키워드 선택 배지 리스트 */}
-            <div className="mt-1 flex flex-wrap gap-3">
+            <div className="mt-[30px] flex flex-wrap gap-x-[17px] gap-y-[16px]">
               {KEYWORD_OPTIONS.map((keyword) => {
                 const isSelected = selectedKeywordIds.includes(keyword.id);
                 const isDisabled =
@@ -120,7 +120,7 @@ const PostBookMetaSection = () => {
                     type="button"
                     onClick={() => handleToggleKeyword(keyword.id)}
                     disabled={isDisabled}
-                    className={`inline-flex items-center rounded-full px-5 py-2 text-[14px] font-semibold shadow-[0_0_12px_rgba(0,0,0,0.08)] transition
+                    className={`inline-flex items-center rounded-full px-[35px] py-[17px] text-[24px] font-bold shadow-[0_0_12px_rgba(0,0,0,0.08)] transition
                       ${
                         isSelected
                           ? 'border-2 border-brown-darker bg-white-dark text-brown-darker'

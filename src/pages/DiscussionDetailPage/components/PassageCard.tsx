@@ -9,14 +9,9 @@ const PassageCard = ({ passage, isActive, title, onClick }: PassageCardProps) =>
   useEffect(() => {
     if (!isActive || !articleRef.current) return;
 
-    const element = articleRef.current;
-    const rect = element.getBoundingClientRect();
-
-    const top = window.scrollY + rect.top - 133;
-
-    window.scrollTo({
-      top,
+    articleRef.current.scrollIntoView({
       behavior: 'smooth',
+      block: 'start',
     });
   }, [isActive]);
 

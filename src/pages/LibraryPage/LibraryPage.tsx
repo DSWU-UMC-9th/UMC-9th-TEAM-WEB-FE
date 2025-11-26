@@ -22,7 +22,7 @@ const LibraryPage = () => {
   };
 
   return (
-    <main className="w-full bg-white-normal pb-[138px] pt-12">
+    <main className="w-full bg-white-normal pb-[141px] pt-[153px]">
       <section className="mx-auto w-full">
         {/* 상단 타이틀 */}
         <LibraryHeader />

@@ -14,19 +14,19 @@ const PostBookHeader = () => {
         <button
           type="button"
           onClick={handleBack}
-          className="text-[24px] text-brown-dark"
+          className="text-[48px] font-bold text-brown-dark"
         >
           &lt;
         </button>
         <div className="flex-1 text-center">
-          <h2 className="text-[24px] font-semibold text-brown-dark">
+          <h2 className="text-[48px] font-bold text-brown-dark">
             나의 서재
           </h2>
         </div>
         {/* 오른쪽 빈 영역(정렬용) */}
         <div className="w-[24px]" />
       </div>
-      <div className="mt-1 h-[2px] w-[110px] bg-brown-dark" />
+      <div className="mt-1 h-[3px] w-[204px] bg-brown-dark" />
     </header>
   );
 };
