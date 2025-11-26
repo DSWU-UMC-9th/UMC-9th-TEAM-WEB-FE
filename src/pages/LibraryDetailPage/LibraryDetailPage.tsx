@@ -20,28 +20,27 @@ const LibraryDetailPage = () => {
 
   return (
     <main className="min-h-screen bg-white-normal">
-      <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-10 px-6 pb-24 pt-8">
+      <section className="mx-auto flex w-full flex-col px-[131px] pt-[152px]">
         {/* 상단 헤더는 PostBookPage에서 쓰던 것 재사용 */}
         <PostBookHeader />
 
         {/* 표지 */}
-        <LibraryDetailCover
-          imageUrl={detail.book.imgUrl}
-          title={detail.book.title}
-        />
+        <LibraryDetailCover imageUrl={detail.book.imgUrl} title={detail.book.title} />
 
-        {/* 메타 정보( 페이지 수, 시간, 키워드) */}
-        <LibraryDetailMeta
-          pageCount={detail.pageCount}
-          readingMinutes={detail.readingMinutes}
-          keywords={detail.keywords}
-        />
+        <div className="flex gap-[70px] flex-col mb-[159px]">
+          {/* 메타 정보( 페이지 수, 시간, 키워드) */}
+          <LibraryDetailMeta
+            pageCount={detail.pageCount}
+            readingMinutes={detail.readingMinutes}
+            keywords={detail.keywords}
+          />
 
-        {/* 내가 뽑은 구절 */}
-        <LibraryDetailPhrase sentence={detail.sentence} />
+          {/* 내가 뽑은 구절 */}
+          <LibraryDetailPhrase sentence={detail.sentence} />
 
-        {/* 장문의 독서록 글 */}
-        <LibraryDetailReview note={detail.note} />
+          {/* 장문의 독서록 글 */}
+          <LibraryDetailReview note={detail.note} />
+        </div>
       </section>
     </main>
   );
