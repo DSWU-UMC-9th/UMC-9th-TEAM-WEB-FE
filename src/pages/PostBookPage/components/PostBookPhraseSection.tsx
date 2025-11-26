@@ -11,12 +11,12 @@ const PostBookPhraseSection = () => {
           <input
             type="text"
             placeholder="페이지 번호를 입력해 주세요."
-            className="h-[62px] w-full max-w-[337px] bg-brown-light px-4 text-[14px] text-brown-dark outline-none"
+            className="h-[62px] w-full max-w-[337px] bg-brown-light px-4 text-[20px] text-brown-dark outline-none"
           />
           <textarea
             rows={4}
             placeholder="인상 깊었던 구절을 작성해주세요."
-            className="w-full resize-none bg-brown-light px-4 py-3 text-[14px] text-brown-dark outline-none"
+            className="w-full resize-none bg-brown-light px-4 py-3 text-[20px] text-brown-dark outline-none"
           />
         </div>
       </section>
