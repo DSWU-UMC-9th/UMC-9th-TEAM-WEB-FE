@@ -28,7 +28,7 @@ const PostBookCoverSection = () => {
   }, [thumbnailUrl]);
 
   return (
-    <section className="mt-4 mb-8 flex w-full justify-center">
+    <section className="mt-[82px] mb-[152px] flex w-full justify-center">
       <LibraryAddCard onClick={handleCardClick} imageUrl={thumbnailUrl} />
 
       <input
