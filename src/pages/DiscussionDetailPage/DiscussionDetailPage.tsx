@@ -1,75 +1,43 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import BookSummary from '@/pages/DiscussionDetailPage/components/BookSummary';
 import PassageList from '@/pages/DiscussionDetailPage/components/PassageList';
 
-import { DUMMY_BOOKS } from '@/data/booksDummy';
-import { BOOK_QUOTE_NOTES_DUMMY } from '@/data/bookQuoteNotesDummy';
-
-import type { Passage, BookDetail } from '@/types/DiscussionDetailPage/bookDetail';
+import type { BookDetail } from '@/types/DiscussionDetailPage/bookDetail';
+import { getBookDetail } from '@/apis/DiscussionDetailPage/getBookDetail';
 
 const DiscussionDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const state = location.state as { initialQuoteId?: number } | undefined;
-  const initialQuoteId = state?.initialQuoteId ?? null;
-
   const numericId = Number(id);
 
-  const book = DUMMY_BOOKS.find((b) => b.id === numericId);
+  const [detail, setDetail] = useState<BookDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!book) {
-    return null;
-  }
-
-  const notesForBook = BOOK_QUOTE_NOTES_DUMMY.filter((note) => note.bookId === book.id);
-
-  const passageMap = new Map<string, Passage>();
-  let initialActivePassageId: number | null = null;
-
-  notesForBook.forEach((note) => {
-    const key = `${note.quoteText}__${note.reference}`;
-
-    const comment = {
-      id: note.id,
-      nickname: note.nickname,
-      createdAt: note.createdAt,
-      content: note.content,
+  useEffect(() => {
+    const fetchDetail = async () => {
+      try {
+        const result = await getBookDetail(numericId);
+        setDetail(result);
+      } catch (err) {
+        console.error('상세 조회 실패:', err);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const existing = passageMap.get(key);
+    fetchDetail();
+  }, [numericId]);
 
-    if (existing) {
-      existing.content.push(comment);
+  if (loading) {
+    return <main className="mx-auto px-[131px] py-[153px] text-[40px]">불러오는 중...</main>;
+  }
 
-      if (initialQuoteId !== null && note.id === initialQuoteId) {
-        initialActivePassageId = existing.id;
-      }
-    } else {
-      const newPassage: Passage = {
-        id: note.id,
-        text: note.quoteText,
-        reference: note.reference,
-        content: [comment],
-      };
-
-      passageMap.set(key, newPassage);
-
-      if (initialQuoteId !== null && note.id === initialQuoteId) {
-        initialActivePassageId = newPassage.id;
-      }
-    }
-  });
-
-  const data: BookDetail = {
-    id: book.id,
-    title: book.title,
-    author: book.author,
-    coverImageUrl: book.coverImageUrl,
-    tags: book.keywords,
-    passages: Array.from(passageMap.values()),
-  };
+  if (!detail) {
+    return <main className="mx-auto px-[131px] py-[153px] text-[40px]">도서 정보를 찾을 수 없습니다.</main>;
+  }
 
   return (
     <main className="mx-auto px-[131px] py-[153px]">
@@ -84,9 +52,9 @@ const DiscussionDetailPage = () => {
         </div>
       </section>
 
-      <section className="flex gap-[42px] h-[907px] overflow-scroll no-scrollbar">
-        <BookSummary detail={data} />
-        <PassageList passages={data.passages} initialActiveId={initialActivePassageId} title={data.title} />
+      <section className="flex gap-[42px] h-[1007px] overflow-scroll no-scrollbar">
+        <BookSummary detail={detail} />
+        <PassageList passages={detail.passages} initialActiveId={null} title={detail.title} />
       </section>
     </main>
   );

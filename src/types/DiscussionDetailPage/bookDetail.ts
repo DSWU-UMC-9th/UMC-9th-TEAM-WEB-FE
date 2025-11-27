@@ -55,3 +55,25 @@ export type PassageListProps = {
   title: string;
   initialActiveId?: number | null;
 };
+
+export type SentenceDTO = {
+  id: number;
+  content: string;
+};
+
+export type BookDetailDTO = {
+  id: number;
+  title: string;
+  author: string;
+  img_url: string;
+  keywords: string[];
+  sentences: SentenceDTO[];
+};
+
+export type BookDetailResponse = {
+  resultType: string;
+  error: unknown;
+  success: {
+    data: BookDetailDTO;
+  } | null;
+};
