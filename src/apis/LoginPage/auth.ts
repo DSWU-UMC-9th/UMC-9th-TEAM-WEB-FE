@@ -9,7 +9,7 @@ export const authApi = {
       password: payload.password,
     });
 
-    const accessToken = data.success.accessToken;
+    const accessToken = data.success.token;
     localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, JSON.stringify(accessToken));
 
     return {

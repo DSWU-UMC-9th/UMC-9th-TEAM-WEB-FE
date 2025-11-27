@@ -4,14 +4,23 @@ import { useHomeStore } from '@/hooks/stores/useHomeStore';
 import HotQuoteSection from '@/pages/HomePage/components/HotQuoteSection';
 import KeywordDiscussionSection from '@/pages/HomePage/components/KeywordDiscussionSection';
 import { useRotatingHotQuote } from '@/hooks/HomePage/useRotatingHotQuote';
-import { DUMMY_BOOKS } from '@/data/booksDummy';
 import type { HotQuote } from '@/types/HomePage/home';
 
 import BookList from '@/pages/DiscussionPage/components/BookList';
 
 const DiscussionPage = () => {
   const navigate = useNavigate();
-  const { selectedKeyword, hotQuote, keywords, setSelectedKeyword, fetchHomeData, loading, error } = useHomeStore();
+  const {
+    selectedKeyword,
+    hotQuote,
+    keywords,
+    setSelectedKeyword,
+    fetchHomeData,
+    loading,
+    error,
+    libraryBooks,
+    fetchLibrary,
+  } = useHomeStore();
   const rotatingHotQuote = useRotatingHotQuote(hotQuote, 5000);
 
   const effectiveHotQuote: HotQuote | null = useMemo(() => {
@@ -27,16 +36,26 @@ const DiscussionPage = () => {
   const isHotQuoteLoading = loading && !effectiveHotQuote && !error;
 
   useEffect(() => {
-    if (!hotQuote && keywords.length === 0) {
-      fetchHomeData();
+    fetchHomeData();
+  }, [fetchHomeData]);
+
+  useEffect(() => {
+    if (libraryBooks.length === 0) {
+      fetchLibrary();
     }
-  }, [hotQuote, keywords.length, fetchHomeData]);
+  }, [fetchLibrary, libraryBooks.length]);
 
   const filteredBooks = useMemo(() => {
-    if (!selectedKeyword) return DUMMY_BOOKS;
+    if (!selectedKeyword || selectedKeyword.trim() === '') {
+      return libraryBooks;
+    }
 
-    return DUMMY_BOOKS.filter((book) => book.keywords?.some((kw) => kw.includes(selectedKeyword)));
-  }, [selectedKeyword]);
+    return libraryBooks.filter((book) => {
+      if (!Array.isArray(book.keywords)) return false;
+
+      return book.keywords.some((kw) => kw === selectedKeyword);
+    });
+  }, [selectedKeyword, libraryBooks]);
 
   const handleHotQuoteClick = () => {
     if (!effectiveHotQuote) return;
@@ -57,14 +76,26 @@ const DiscussionPage = () => {
       </section>
 
       <section className="mb-12">
-        <HotQuoteSection hotQuote={effectiveHotQuote} isLoading={isHotQuoteLoading} onClick={handleHotQuoteClick} />
+        <HotQuoteSection
+          hotQuote={effectiveHotQuote ? [effectiveHotQuote] : null}
+          isLoading={isHotQuoteLoading}
+          onClick={handleHotQuoteClick}
+        />
       </section>
 
       <section className="mb-12">
         <KeywordDiscussionSection keywords={keywords} onKeywordClick={handleKeywordSelect} />
       </section>
 
-      <BookList books={filteredBooks} />
+      <BookList
+        books={filteredBooks.map((item) => ({
+          id: item.book.id,
+          title: item.book.title,
+          author: item.book.author,
+          imgUrl: item.book.imgUrl ?? '',
+          keywords: (item.keywords ?? []).map((kw, index) => ({ id: index, name: kw })),
+        }))}
+      />
     </main>
   );
 };

@@ -7,3 +7,22 @@ export type BookCardProps = {
 export type BookListProps = {
   books: Book[];
 };
+
+export interface LibraryBookItem {
+  id: number;
+  book: {
+    id: number;
+    title: string;
+    author: string;
+    imgUrl: string | null;
+  };
+  keywords?: string[];
+}
+
+export interface LibraryResponse {
+  resultType: string;
+  error: unknown;
+  success: {
+    data: LibraryBookItem[];
+  } | null;
+}

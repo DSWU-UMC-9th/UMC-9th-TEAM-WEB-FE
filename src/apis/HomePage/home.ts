@@ -1,25 +1,86 @@
-import type { Book, HotQuote, PopularKeyword } from '@/types/HomePage/home';
-import { DUMMY_BOOKS } from '@/data/booksDummy';
-import { DUMMY_HOT_QUOTES } from '@/data/hotQuoteDummy';
-import { DUMMY_KEYWORDS } from '@/data/keywordsDummy';
-
-// TODO: 나중에 실제 API 연동 시, 이 delay 함수는 제거하고 axios 호출로 교체.
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { axiosInstance } from '@/apis/axios';
+import type { Book, PopularKeyword } from '@/types/HomePage/home';
 
 export const homeApi = {
-  async fetchMyBooks(_userId?: number): Promise<Book[]> {
-    await delay(300);
-    // TODO: userId 기준으로 백엔드에서 데이터 받아오기
-    return Array.isArray(DUMMY_BOOKS) ? DUMMY_BOOKS : [];
+  async fetchMyBooks(): Promise<Book[]> {
+    const response = await axiosInstance.get('/api/v1/home/library');
+
+    const raw = response.data?.success?.data;
+
+    if (!Array.isArray(raw)) return [];
+
+    const enriched = await Promise.all(
+      raw.map(async (item) => {
+        const detailRes = await axiosInstance.get(`/api/v1/books/${item.book.id}`);
+        const detail = detailRes.data?.success?.data;
+
+        const keywords =
+          detail?.keywords?.map((k: string, idx: number) => ({
+            id: idx,
+            name: k,
+          })) ?? [];
+
+        return {
+          id: item.book.id,
+          title: item.book.title,
+          author: item.book.author,
+          imgUrl: item.book.imgUrl,
+          keywords,
+        };
+      }),
+    );
+
+    return enriched;
   },
 
-  async fetchHotQuotes(): Promise<HotQuote[] | null> {
-    await delay(200);
-    return DUMMY_HOT_QUOTES ?? null;
+  async fetchHotQuotes() {
+    const response = await axiosInstance.get('/api/v1/home/hot');
+    const raw = response.data?.success?.data;
+
+    if (!Array.isArray(raw) || raw.length === 0) {
+      return [];
+    }
+
+    const myBooks = await homeApi.fetchMyBooks();
+
+    const enriched = await Promise.all(
+      raw.map(async (item) => {
+        const matchedBook = myBooks.find((b) => b.title === item.title);
+
+        interface Sentence {
+          id: number;
+          content: string;
+        }
+
+        let bookDetail: { sentences?: Sentence[] } | null = null;
+
+        if (matchedBook) {
+          const detailRes = await axiosInstance.get(`/api/v1/books/${matchedBook.id}`);
+          bookDetail = detailRes.data?.success?.data;
+        }
+
+        return {
+          id: item.id,
+          bookId: matchedBook?.id ?? null,
+          bookTitle: matchedBook?.title ?? item.title,
+          content: item.sentence,
+          sentences: bookDetail?.sentences?.map((s: { id: number; content: string }) => s.content) ?? [],
+        };
+      }),
+    );
+
+    return enriched;
   },
 
   async fetchPopularKeywords(): Promise<PopularKeyword[]> {
-    await delay(200);
-    return Array.isArray(DUMMY_KEYWORDS) ? DUMMY_KEYWORDS : [];
+    const response = await axiosInstance.get('/api/v1/home/keyword');
+    const raw = response.data?.success?.data;
+
+    if (!Array.isArray(raw)) return [];
+
+    return raw.map((item) => ({
+      id: item.id,
+      name: item.name,
+    }));
   },
 };
