@@ -40,21 +40,13 @@ const DiscussionPage = () => {
   }, [fetchHomeData]);
 
   useEffect(() => {
-    if (libraryBooks.length === 0) {
-      fetchLibrary();
-    }
-  }, [fetchLibrary, libraryBooks.length]);
+    fetchLibrary();
+  }, [fetchLibrary]);
 
   const filteredBooks = useMemo(() => {
-    if (!selectedKeyword || selectedKeyword.trim() === '') {
-      return libraryBooks;
-    }
+    if (!selectedKeyword) return libraryBooks;
 
-    return libraryBooks.filter((book) => {
-      if (!Array.isArray(book.keywords)) return false;
-
-      return book.keywords.some((kw) => kw === selectedKeyword);
-    });
+    return libraryBooks.filter((item) => item.keywords?.includes(selectedKeyword));
   }, [selectedKeyword, libraryBooks]);
 
   const handleHotQuoteClick = () => {
