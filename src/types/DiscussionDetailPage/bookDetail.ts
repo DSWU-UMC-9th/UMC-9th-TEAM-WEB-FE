@@ -1,3 +1,5 @@
+import type { SentenceCommentDTO } from '@/types/DiscussionDetailPage/comment';
+
 export type BookQuoteNote = {
   id: number;
   bookId: number;
@@ -40,7 +42,9 @@ export type CommentInputProps = {
 };
 
 export type CommentItemProps = {
-  comment: PassageComment;
+  comment: SentenceCommentDTO;
+  onEdit: (commentId: number, newContent: string) => Promise<void>;
+  onDelete: (commentId: number) => void | Promise<void>;
 };
 
 export type PassageCardProps = {

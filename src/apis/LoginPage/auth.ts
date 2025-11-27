@@ -10,7 +10,10 @@ export const authApi = {
     });
 
     const accessToken = data.success.token;
+    const nickname = data.success.user.nickname;
+
     localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, JSON.stringify(accessToken));
+    localStorage.setItem(LOCAL_STORAGE_KEY.nickname, nickname);
 
     return {
       id: data.success.user.id,

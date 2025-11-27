@@ -27,6 +27,7 @@ export const useAuthStore = create<AuthState>()(
 
       logout() {
         localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+        localStorage.removeItem(LOCAL_STORAGE_KEY.nickname);
         set({ user: null, isLoggedIn: false, loading: false, error: null });
       },
     }),
