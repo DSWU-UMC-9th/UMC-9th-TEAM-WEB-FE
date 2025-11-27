@@ -1,32 +1,37 @@
-/**
- * HotQuoteSection 컴포넌트는 인기 구절 토론 섹션을 표시합니다.
- *
- * @param {HotQuoteSectionProps} props - 컴포넌트 props
- * @param {Object} props.hotQuote - 표시할 인기 구절 객체
- * @param {string} props.hotQuote.id - 인기 구절의 고유 식별자
- * @param {string} props.hotQuote.bookTitle - 구절이 속한 책의 제목
- * @param {string} props.hotQuote.content - 구절의 내용
- * @param {() => void} props.onClick - 인기 구절 버튼 클릭 시 호출되는 콜백 함수
- *
- * @returns {JSX.Element} 애니메이션 구절 표시가 포함된 인기 구절 토론 영역을 포함하는 섹션
- */
-
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import type { HotQuoteSectionProps } from '@/types/HomePage/home';
 
 const HotQuoteSection = ({ hotQuote, onClick, isLoading }: HotQuoteSectionProps) => {
   const location = useLocation();
   const isDiscussionPage = location.pathname.startsWith('/discussion');
-  const renderText = () => {
-    if (isLoading) {
-      return '로딩 중...';
-    }
 
-    if (!hotQuote) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!Array.isArray(hotQuote) || hotQuote.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % hotQuote.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [hotQuote]);
+
+  const rotatingHotQuote = hotQuote?.[currentIndex];
+
+  const renderText = () => {
+    if (isLoading) return '로딩중...';
+
+    if (!Array.isArray(hotQuote) || hotQuote.length === 0) {
       return '현재 등록된 HOT 구절이 없습니다.';
     }
 
-    return `⟪${hotQuote.bookTitle}⟫ - ${hotQuote.content}`;
+    if (!rotatingHotQuote) {
+      return '현재 등록된 HOT 구절이 없습니다.';
+    }
+
+    return `⟪${rotatingHotQuote.bookTitle}⟫ - ${rotatingHotQuote.content}`;
   };
 
   return (
@@ -52,7 +57,7 @@ const HotQuoteSection = ({ hotQuote, onClick, isLoading }: HotQuoteSectionProps)
 
         <div className="w-full overflow-hidden perspective-800">
           <span
-            key={hotQuote ? hotQuote.id : 'empty'}
+            key={rotatingHotQuote ? rotatingHotQuote.id : 'empty'}
             className={`animate-quote-flip block w-full overflow-hidden text-ellipsis whitespace-nowrap font-normal text-[24px] ${
               isDiscussionPage ? 'text-white-light' : 'text-brown-darker'
             }`}>

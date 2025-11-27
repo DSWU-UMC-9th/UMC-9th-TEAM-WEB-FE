@@ -3,7 +3,7 @@ import type { HotQuote, HotQuoteSource } from '@/types/HomePage/home';
 
 const toList = (source: HotQuoteSource): HotQuote[] => {
   if (!source) return [];
-  return Array.isArray(source) ? source : [source];
+  return Array.isArray(source) ? source : [];
 };
 
 const pickRandom = (list: HotQuote[], excludeId?: number): HotQuote => {
@@ -22,7 +22,7 @@ export const useRotatingHotQuote = (source: HotQuoteSource, intervalMs: number =
   const [current, setCurrent] = useState<HotQuote | null>(() => (list.length > 0 ? pickRandom(list) : null));
 
   useEffect(() => {
-    if (list.length === 0) {
+    if (!Array.isArray(list) || list.length === 0) {
       return;
     }
 
@@ -40,7 +40,7 @@ export const useRotatingHotQuote = (source: HotQuoteSource, intervalMs: number =
     };
   }, [list, intervalMs]);
 
-  if (list.length === 0) {
+  if (!Array.isArray(list) || list.length === 0) {
     return null;
   }
 
