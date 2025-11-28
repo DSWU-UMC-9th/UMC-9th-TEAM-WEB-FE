@@ -6,9 +6,10 @@ import LibraryAddCard from './LibraryAddCard';
 interface LibraryBookGridProps {
   books: LibraryBook[];
   onAddClick?: () => void;
+  onRequestDelete?: (book: LibraryBook) => void;
 }
 
-const LibraryBookGrid = ({ books, onAddClick }: LibraryBookGridProps) => {
+const LibraryBookGrid = ({ books, onAddClick, onRequestDelete }: LibraryBookGridProps) => {
   return (
     <div
       className="
@@ -21,7 +22,11 @@ const LibraryBookGrid = ({ books, onAddClick }: LibraryBookGridProps) => {
       "
     >
       {books.map((book) => (
-        <LibraryBookCard key={book.id} book={book} />
+        <LibraryBookCard
+          key={book.id}
+          book={book}
+          onDeleteClick={onRequestDelete}
+        />
       ))}
 
       {/* 도서 추가 카드 */}

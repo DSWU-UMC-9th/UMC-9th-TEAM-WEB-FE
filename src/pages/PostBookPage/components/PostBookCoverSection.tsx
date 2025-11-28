@@ -2,7 +2,11 @@
 import { useRef, useState, useEffect, type ChangeEvent } from 'react';
 import LibraryAddCard from '@/pages/LibraryPage/components/LibraryAddCard';
 
-const PostBookCoverSection = () => {
+interface PostBookCoverSectionProps {
+  onImageSelect: (file: File | null) => void;
+}
+
+const PostBookCoverSection = ({ onImageSelect }: PostBookCoverSectionProps) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -11,8 +15,15 @@ const PostBookCoverSection = () => {
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const file = e.target.files?.[0] ?? null;
+
+    onImageSelect(file);
+
+    if (!file) {
+      if (thumbnailUrl) URL.revokeObjectURL(thumbnailUrl);
+      setThumbnailUrl(null);
+      return;
+    }
 
     const objectUrl = URL.createObjectURL(file);
     setThumbnailUrl((prev) => {
