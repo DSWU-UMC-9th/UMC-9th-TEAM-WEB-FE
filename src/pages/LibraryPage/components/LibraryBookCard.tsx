@@ -67,7 +67,6 @@ const LibraryBookCard = ({ book, onDeleteClick }: LibraryBookCardProps) => {
           overflow-hidden
           bg-gray-200
           shadow-[0_0_20px_rgba(0,0,0,0.3)]
-          rounded-[18px]
         "
       >
         {/* 이미지 */}

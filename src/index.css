@@ -88,6 +88,8 @@
   --color-white-darker: #595856;
   --color-error: #FF695C;
 
+  --color-red: #FF695C;
+
   --animate-quote-flip: quote-flip 0.4s ease both;
     @keyframes quote-flip {
       0% {

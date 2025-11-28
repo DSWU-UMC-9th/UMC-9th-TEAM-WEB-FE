@@ -1,5 +1,8 @@
 // src/pages/PostBookPage/components/PostBookMetaSection.tsx
+import { useState } from 'react';
+
 const MAX_KEYWORDS = 3;
+const VISIBLE_KEYWORD_COUNT = 18;
 
 const KEYWORD_OPTIONS = [
   { id: 1, label: '소설' },
@@ -60,6 +63,14 @@ const PostBookMetaSection = ({
   onChangeReadingMinutes,
   onChangeKeywords,
 }: Props) => {
+  // 👉 키워드 더보기/접기 상태 (컴포넌트 최상단에서 선언)
+  const [showAllKeywords, setShowAllKeywords] = useState(false);
+
+  // 👉 화면에 실제로 보여줄 키워드 배열
+  const displayedKeywords = showAllKeywords
+    ? KEYWORD_OPTIONS
+    : KEYWORD_OPTIONS.slice(0, VISIBLE_KEYWORD_COUNT);
+
   const handleToggleKeyword = (id: number) => {
     const isSelected = selectedKeywordIds.includes(id);
 
@@ -148,12 +159,12 @@ const PostBookMetaSection = ({
           </span>
 
           <div className="flex-1 space-y-3">
-            <p className="text-[13px] text-brown-sub">
-              키워드는 최대 {MAX_KEYWORDS}개까지 선택할 수 있습니다.
+            <p className="text-[10px] text-red">
+              *최대 {MAX_KEYWORDS}개의 키워드를 선택해주세요
             </p>
 
             <div className="mt-1 flex flex-wrap gap-3">
-              {KEYWORD_OPTIONS.map((keyword) => {
+              {displayedKeywords.map((keyword) => {
                 const isSelected = selectedKeywordIds.includes(keyword.id);
                 const isDisabled =
                   !isSelected && selectedKeywordIds.length >= MAX_KEYWORDS;
@@ -180,6 +191,15 @@ const PostBookMetaSection = ({
                   </button>
                 );
               })}
+
+              {/* 키워드 더보기 / 접기 버튼 */}
+              <button
+                type="button"
+                onClick={() => setShowAllKeywords((prev) => !prev)}
+                className="inline-flex items-center rounded-full border border-brown-darker bg-white px-5 py-2 text-[14px] font-semibold text-brown-darker"
+              >
+                {showAllKeywords ? '접기' : '키워드 더보기'}
+              </button>
             </div>
           </div>
         </div>

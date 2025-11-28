@@ -5,6 +5,18 @@ import type {
   LibraryDetailApiResponse,
 } from '@/types/LibraryDetailPage/libraryDetail';
 
+interface CommonResponse<T> {
+  resultType: 'SUCCESS' | 'FAIL';
+  error: {
+    errorCode: string;
+    reason: string;
+    data?: unknown;
+  } | null;
+  success: {
+    data: T;
+  } | null;
+}
+
 // 나의 서재 상세 조회
 export const getLibraryDetail = async (
   userBookId: number,
@@ -62,6 +74,39 @@ export const getLibraryDetail = async (
     );
   }
 
+  return detail;
+};
+
+/** 도서 수정 PATCH */
+export interface UpdateLibraryBookPayload {
+  pageCount?: number;
+  readingMinutes?: number;
+  sentence?: string;
+  note?: string;
+  keywords?: number[];
+}
+
+export const updateLibraryBook = async (
+  userBookId: number,
+  payload: UpdateLibraryBookPayload,
+): Promise<LibraryBookDetail> => {
+  const res = await axiosInstance.patch(`/api/v1/library/${userBookId}`, payload);
+  const body = res.data;
+
+  console.log('[updateLibraryBook] raw response:', body);
+
+  // 1) resultType 래퍼가 있는 경우만 FAIL 체크
+  if (body && typeof body === 'object' && 'resultType' in body) {
+    const api = body as CommonResponse<unknown>;
+
+    if (api.resultType === 'FAIL') {
+      throw new Error(api.error?.reason ?? '도서 수정에 실패했어요.');
+    }
+  }
+
+  // 2) 여기까지 왔다는 건 일단 서버 쪽에서 에러는 아니라는 뜻이니
+  //    최신 상세 정보를 다시 GET 해서, 항상 동일한 구조로 반환
+  const detail = await getLibraryDetail(userBookId);
   return detail;
 };
 

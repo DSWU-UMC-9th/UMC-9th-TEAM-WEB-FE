@@ -18,7 +18,6 @@ const LibraryAddCard = ({ onClick, imageUrl }: LibraryAddCardProps) => {
         max-w-[260px]
         aspect-[3/4.4]
         grid place-items-center
-        rounded-[18px]
         bg-white-normal-hover
         shadow-[0_0_40px_rgba(0,0,0,0.18)]
         overflow-hidden

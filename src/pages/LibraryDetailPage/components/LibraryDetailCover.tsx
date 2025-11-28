@@ -11,10 +11,10 @@ const LibraryDetailCover = ({ imageUrl }: Props) => {
         <img
           src={imageUrl}
           alt="book-cover"
-          className="h-[300px] w-[210px] rounded-lg object-cover shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+          className="h-[300px] w-[210px] object-cover shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
         />
       ) : (
-        <div className="flex h-[250px] w-[180px] items-center justify-center rounded-lg bg-brown-light text-brown-darker shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+        <div className="flex h-[250px] w-[180px] items-center justify-center bg-brown-light text-brown-darker shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
           표지 이미지 없음
         </div>
       )}

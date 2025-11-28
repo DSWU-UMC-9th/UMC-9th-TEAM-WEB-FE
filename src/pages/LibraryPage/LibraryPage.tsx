@@ -84,7 +84,7 @@ const LibraryPage = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black-40">
           <div className="w-[320px] rounded-xl bg-white-light p-6 shadow-lg">
             <p className="mb-6 text-center text-[18px] font-semibold text-brown-darker">
-              “{selectedBook.title}”을 삭제하시겠습니까?
+              "{selectedBook.title}"을 삭제하시겠습니까?
             </p>
 
             <div className="flex justify-between gap-3">
