@@ -4,9 +4,7 @@ type Props = {
   
   const EditIcon = ({ className }: Props) => (
     <svg
-      width="48"
-      height="48"
-      viewBox="0 0 48 48"
+      viewBox="0 0 66 66"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}

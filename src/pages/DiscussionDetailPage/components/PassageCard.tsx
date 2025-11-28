@@ -1,22 +1,34 @@
 import { useEffect, useRef } from 'react';
 import CommentItem from '@/pages/DiscussionDetailPage/components/CommentItem';
 import CommentInput from '@/pages/DiscussionDetailPage/components/CommentInput';
-import type { PassageComment, PassageCardProps } from '@/types/DiscussionDetailPage/bookDetail';
+import type { PassageCardProps } from '@/types/DiscussionDetailPage/bookDetail';
+import type { SentenceCommentDTO } from '@/types/DiscussionDetailPage/comment';
 
-const PassageCard = ({ passage, isActive, title, onClick }: PassageCardProps) => {
+interface PassageCardFixedProps extends PassageCardProps {
+  comments: SentenceCommentDTO[];
+  onSubmitComment: (value: string) => void;
+  onEditComment: (commentId: number, newContent: string) => Promise<void>;
+  onDeleteComment: (commentId: number) => Promise<void>;
+}
+
+const PassageCard = ({
+  passage,
+  isActive,
+  title,
+  onClick,
+  comments,
+  onSubmitComment,
+  onEditComment,
+  onDeleteComment,
+}: PassageCardFixedProps) => {
   const articleRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!isActive || !articleRef.current) return;
 
-    const element = articleRef.current;
-    const rect = element.getBoundingClientRect();
-
-    const top = window.scrollY + rect.top - 133;
-
-    window.scrollTo({
-      top,
+    articleRef.current.scrollIntoView({
       behavior: 'smooth',
+      block: 'start',
     });
   }, [isActive]);
 
@@ -33,15 +45,15 @@ const PassageCard = ({ passage, isActive, title, onClick }: PassageCardProps) =>
         </p>
       </article>
 
-      {isActive && <CommentInput />}
-
-      {isActive && passage.content && passage.content.length > 0 && (
+      {isActive && comments.length > 0 && (
         <div className="my-[21px] flex flex-col gap-[55px]">
-          {passage.content.map((comment) => (
-            <CommentItem key={comment.id} comment={comment as PassageComment} />
+          {comments.map((comment) => (
+            <CommentItem key={comment.id} comment={comment} onEdit={onEditComment} onDelete={onDeleteComment} />
           ))}
         </div>
       )}
+
+      {isActive && <CommentInput onSubmit={onSubmitComment} />}
     </>
   );
 };

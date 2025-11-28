@@ -27,14 +27,14 @@ const LibraryDetailHeader = ({ title = '나의 서재', onEdit }: Props) => {
         <button
           type="button"
           onClick={handleBack}
-          className="text-[24px] text-brown-dark"
+          className="text-[48px] text-brown-dark"
         >
           &lt;
         </button>
 
         {/* 가운데 제목 */}
         <div className="flex-1 text-center">
-          <h2 className="text-[24px] font-semibold text-brown-dark">
+          <h2 className="text-[48px] font-semibold text-brown-dark">
             {title}
           </h2>
         </div>
@@ -43,14 +43,14 @@ const LibraryDetailHeader = ({ title = '나의 서재', onEdit }: Props) => {
         <button
           type="button"
           onClick={handleEditClick}
-          className="flex h-6 w-6 items-center justify-center"
+          className="flex h-12 w-12 items-center justify-center"
         >
-          <EditIcon className="h-6 w-6" />
+          <EditIcon className="h-12 w-12" />
         </button>
       </div>
 
       {/* 아래 밑줄 */}
-      <div className="mt-1 h-[2px] w-[110px] bg-brown-dark" />
+      <div className="mt-1 h-[3px] w-[204px] bg-brown-dark" />
     </header>
   );
 };

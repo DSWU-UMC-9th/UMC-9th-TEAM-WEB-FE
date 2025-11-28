@@ -51,7 +51,7 @@ const LibraryDetailPage = () => {
 
   return (
     <main className="min-h-screen bg-white-normal">
-      <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-10 px-6 pb-24 pt-8">
+      <section className="mx-auto flex w-full flex-col px-[131px] pt-[152px]">
         <LibraryDetailHeader onEdit={handleGoEdit} />
 
         {loading && (
@@ -66,18 +66,18 @@ const LibraryDetailPage = () => {
 
         {!loading && !error && detail && (
           <>
-            <LibraryDetailCover imageUrl={detail.book.imgUrl} />
-
-            <LibraryDetailMeta
-              title={detail.book.title}
-              author={detail.book.author}
-              pageCount={detail.pageCount ?? 0}
-              readingMinutes={detail.readingMinutes ?? 0}
-              keywords={detail.keywords ?? []}
-            />
-
-            <LibraryDetailPhrase sentence={detail.sentence ?? ''} />
-            <LibraryDetailReview note={detail.note ?? ''} />
+            <LibraryDetailCover imageUrl={detail.book.imgUrl} title={detail.book.title}/>
+            <div className="flex gap-[70px] flex-col mb-[159px]">
+              <LibraryDetailMeta
+                title={detail.book.title}
+                author={detail.book.author}
+                pageCount={detail.pageCount ?? 0}
+                readingMinutes={detail.readingMinutes ?? 0}
+                keywords={detail.keywords ?? []}
+              />
+              <LibraryDetailPhrase sentence={detail.sentence ?? ''} />
+              <LibraryDetailReview note={detail.note ?? ''} />
+            </div>  
           </>
         )}
       </section>

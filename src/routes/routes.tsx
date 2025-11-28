@@ -5,7 +5,7 @@ import DiscussionPage from '@/pages/DiscussionPage/DiscussionPage';
 import HomePage from '@/pages/HomePage/HomePage';
 import LibraryDetailPage from '@/pages/LibraryDetailPage/LibraryDetailPage';
 import LibraryPage from '@/pages/LibraryPage/LibraryPage';
-import LibraryEditPage from '@/pages/LibraryDetailPage/components/LibraryEditPage';
+import LibraryEditPage from '@/pages/LibraryEditPage/LibraryEditPage';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import PostBookPage from '@/pages/PostBookPage/PostBookPage';
 import SignupPage from '@/pages/SignupPage/SignupPage';

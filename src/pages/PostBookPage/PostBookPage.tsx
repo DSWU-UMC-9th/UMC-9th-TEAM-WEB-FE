@@ -24,10 +24,10 @@ const PostBookPage = () => {
   const [readingMinutes, setReadingMinutes] = useState('');
   const [selectedKeywordIds, setSelectedKeywordIds] = useState<number[]>([]);
 
-  // 3) 구절 & 리뷰
-  const [sentencePage, setSentencePage] = useState('');   // 페이지 번호(화면용)
-  const [sentence, setSentence] = useState('');           // 실제 구절 내용
-  const [reviewText, setReviewText] = useState('');       // note
+  // 3) 구절
+  const [sentencePage, setSentencePage] = useState(''); 
+  const [sentence, setSentence] = useState(''); 
+  const [reviewText, setReviewText] = useState(''); 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -51,7 +51,7 @@ const PostBookPage = () => {
       return;
     }
 
-    // ✅ 구절: 페이지 번호 + 내용 합쳐서 하나의 sentence로 보냄
+    // 구절: 페이지 번호 + 내용 합쳐서 하나의 sentence로 보냄
     const mergedSentence =
       sentencePage && sentence
         ? `[${sentencePage}p] ${sentence}`
@@ -82,40 +82,41 @@ const PostBookPage = () => {
 
   return (
     <main className="min-h-screen bg-white-normal">
-      <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-10 px-6 pb-24 pt-8">
+      <section className="flex w-full flex-col px-[131px] pb-[128px] pt-[152px]">
         <PostBookHeader />
 
         {/* 표지 이미지 업로드 섹션 */}
         <PostBookCoverSection onImageSelect={setImageFile} />
 
+        <div className="flex flex-col gap-[70px]">
         {/* 메타 정보 섹션 (제목, 저자, 페이지 수, 시간, 키워드) */}
-        <PostBookMetaSection
-          title={title}
-          author={author}
-          pageCount={pageCount}
-          readingMinutes={readingMinutes}
-          selectedKeywordIds={selectedKeywordIds}
-          onChangeTitle={setTitle}
-          onChangeAuthor={setAuthor}
-          onChangePageCount={setPageCount}
-          onChangeReadingMinutes={setReadingMinutes}
-          onChangeKeywords={setSelectedKeywordIds}
-        />
+            <PostBookMetaSection
+              title={title}
+              author={author}
+              pageCount={pageCount}
+              readingMinutes={readingMinutes}
+              selectedKeywordIds={selectedKeywordIds}
+              onChangeTitle={setTitle}
+              onChangeAuthor={setAuthor}
+              onChangePageCount={setPageCount}
+              onChangeReadingMinutes={setReadingMinutes}
+              onChangeKeywords={setSelectedKeywordIds}
+            />
 
-        {/* 내가 뽑은 구절 섹션 */}
-        <PostBookPhraseSection
-          page={sentencePage}
-          sentence={sentence}
-          onChangePage={setSentencePage}
-          onChangeSentence={setSentence}
-        />
+            {/* 내가 뽑은 구절 섹션 */}
+            <PostBookPhraseSection
+              page={sentencePage}
+              sentence={sentence}
+              onChangePage={setSentencePage}
+              onChangeSentence={setSentence}
+            />
 
-        {/* 장문의 독서록 섹션 */}
-        <PostBookReviewSection
-          review={reviewText}
-          onChangeReview={setReviewText}
-        />
-
+            {/* 장문의 독서록 섹션 */}
+            <PostBookReviewSection
+              review={reviewText}
+              onChangeReview={setReviewText}
+            />
+        </div>
         {/* 하단 저장 버튼 */}
         <PostBookSubmitBar onSubmit={handleSubmit} disabled={isSubmitting} />
       </section>

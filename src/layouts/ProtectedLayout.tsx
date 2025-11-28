@@ -6,11 +6,11 @@ import { useAuthStore } from '@/hooks/stores/useAuthStore';
 
 const ProtectedLayout = () => {
   const { isLoggedIn } = useAuthStore();
-/*
+
   if (!isLoggedIn) {
     return <Navigate to={'/login'} replace />;
   }
-*/
+
   return (
     <div className="flex flex-col h-dvh">
       <ScrollToTop />

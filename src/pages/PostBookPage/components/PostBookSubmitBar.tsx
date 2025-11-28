@@ -6,16 +6,16 @@ interface PostBookSubmitBarProps {
 
 const PostBookSubmitBar = ({ onSubmit, disabled }: PostBookSubmitBarProps) => {
   return (
-    <div className="mt-4 flex w-full justify-center">
+    <div className="mt-[70px] flex w-full justify-center">
       <button
         type="button"
         onClick={onSubmit}
         disabled={disabled}
         className="
-          h-[52px] w-[180px]
+          px-[144px] py-[38px]
           rounded-full
           bg-brown-normal
-          text-[16px] font-semibold text-white
+          text-[36px] font-normal text-white
           disabled:opacity-60 disabled:cursor-not-allowed
         "
       >

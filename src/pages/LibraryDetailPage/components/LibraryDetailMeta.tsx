@@ -17,57 +17,57 @@ const LibraryDetailMeta = ({
   keywords,
 }: Props) => {
   return (
-    <section className="w-full rounded-[18px] border-2 border-brown-darker bg-white-light px-10 py-8 shadow-[0_0_25px_rgba(0,0,0,0.06)]">
-      <div className="flex flex-col gap-6">
+    <section className="w-full rounded-[20px] border-2 border-brown-darker bg-white-light px-[67px] py-[97px] shadow-[0_0_25px_rgba(0,0,0,0.06)]">
+      <div className="flex flex-col gap-9">
         
         {/* 제목 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[79px]">
+          <span className="flex min-w-[120px] items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>책 제목</span>
           </span>
-          <p className="text-[15px] text-brown-dark">{title}</p>
+          <p className="text-[24px] text-brown-dark">{title}</p>
         </div>
 
         {/* 저자 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[79px]">
+          <span className="flex min-w-[120px] items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>저자</span>
           </span>
-          <p className="text-[15px] text-brown-dark">{author}</p>
+          <p className="text-[24px] text-brown-dark">{author}</p>
         </div>
 
         {/* 페이지 수 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[79px]">
+          <span className="flex min-w-[120px] items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>페이지 수</span>
           </span>
-          <p className="text-[15px] text-brown-dark">{pageCount}p</p>
+          <p className="text-[24px] text-brown-dark">{pageCount}p</p>
         </div>
 
         {/* 시간 기록 */}
-        <div className="flex items-center gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-center gap-[79px]">
+          <span className="flex min-w-[120px] items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>시간 기록</span>
           </span>
-          <p className="text-[15px] text-brown-dark">{readingMinutes}분</p>
+          <p className="text-[24px] text-brown-dark">{readingMinutes}분</p>
         </div>
 
         {/* 키워드 */}
-        <div className="flex items-start gap-8">
-          <span className="flex min-w-[120px] items-center gap-2 text-[20px] font-bold text-brown-darker">
+        <div className="flex items-start gap-[108px]">
+          <span className="flex min-w-[120px] items-center gap-2 text-[36px] font-semibold text-brown-darker">
             <span>|</span>
             <span>키워드</span>
           </span>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-[22px]">
             {keywords.map((k) => (
               <div
                 key={k.id}
-                className="rounded-full bg-brown-light px-5 py-2 text-[14px] font-semibold text-brown-darker shadow-[0_0_12px_rgba(0,0,0,0.08)]"
+                className="rounded-[73px] bg-brown-light px-12 py-[17px] text-[24px] font-semibold text-brown-darker shadow-[0_0_10px_rgba(0,0,0,0.15)]"
               >
                 #{k.name}
               </div>

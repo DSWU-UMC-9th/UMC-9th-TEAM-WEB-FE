@@ -17,11 +17,14 @@ const LibraryBookCard = ({ book, onDeleteClick }: LibraryBookCardProps) => {
   return (
     <div
       className="
-        relative 
-        group 
-        w-full 
-        max-w-[260px] 
+        group
+        relative
+        w-[300px]
+        h-[468px] 
         aspect-[3/4.4]
+        overflow-hidden
+        bg-gray-200
+        shadow-[0_4px_30px_5px_rgba(0,0,0,0.25)]
       "
     >
       {/* hover 시 뜨는 삭제 버튼 */}
@@ -42,16 +45,15 @@ const LibraryBookCard = ({ book, onDeleteClick }: LibraryBookCardProps) => {
             justify-center
             rounded-full
             bg-brown-normal
-            px-3
+            px-5
             py-1
-            text-[12px]
+            text-[20px]
             font-semibold
             text-white
-            shadow-[0_0_8px_rgba(0,0,0,0.25)]
             group-hover:flex
           "
         >
-          삭제
+          삭제 
         </button>
       )}
 
@@ -62,7 +64,7 @@ const LibraryBookCard = ({ book, onDeleteClick }: LibraryBookCardProps) => {
         className="
           relative
           w-full
-          max-w-[260px]
+          h-full
           aspect-[3/4.4]
           overflow-hidden
           bg-gray-200
@@ -81,7 +83,7 @@ const LibraryBookCard = ({ book, onDeleteClick }: LibraryBookCardProps) => {
           className="
             absolute 
             inset-0 
-            bg-black/10 
+            bg-black/20
             opacity-0 
             group-hover:opacity-100 
             transition-opacity 

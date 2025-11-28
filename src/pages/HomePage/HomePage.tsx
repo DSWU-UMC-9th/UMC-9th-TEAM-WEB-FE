@@ -9,15 +9,17 @@ import { useRotatingHotQuote } from '@/hooks/HomePage/useRotatingHotQuote';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useAuthStore();
+  const { isLoggedIn } = useAuthStore();
   const { books, hotQuote, keywords, loading, error, fetchHomeData, setSelectedKeyword } = useHomeStore();
   const rotatingHotQuote = useRotatingHotQuote(hotQuote, 5000);
 
-  const isHotQuoteLoading = loading || (!rotatingHotQuote && !error);
+  const isHotQuoteLoading = loading;
 
   useEffect(() => {
-    fetchHomeData(isLoggedIn ? user?.id : undefined);
-  }, [isLoggedIn, user?.id, fetchHomeData]);
+    if (!isLoggedIn) return;
+
+    fetchHomeData();
+  }, [isLoggedIn, fetchHomeData]);
 
   const handleKeywordSelect = (keyword: string) => {
     setSelectedKeyword(keyword);
@@ -44,7 +46,11 @@ const HomePage = () => {
       </section>
 
       <section className="mx-auto mt-[58px] w-full">
-        <HotQuoteSection hotQuote={rotatingHotQuote} isLoading={isHotQuoteLoading} onClick={handleHotQuoteClick} />
+        <HotQuoteSection
+          hotQuote={rotatingHotQuote ? [rotatingHotQuote] : []}
+          isLoading={isHotQuoteLoading}
+          onClick={handleHotQuoteClick}
+        />
       </section>
 
       <section className="mx-auto mt-10 w-full">

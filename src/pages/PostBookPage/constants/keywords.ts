@@ -1,0 +1,36 @@
+//src/pages/PostBookPage/constants/keywords.ts
+export const MAX_KEYWORDS = 3;
+export const VISIBLE_KEYWORD_COUNT = 18;
+
+export const KEYWORD_OPTIONS = [
+  { id: 1, label: '소설' },
+  { id: 2, label: '시' },
+  { id: 3, label: '에세이' },
+  { id: 4, label: '추리' },
+  { id: 5, label: '판타지' },
+  { id: 6, label: 'SF' },
+  { id: 7, label: '고전' },
+  { id: 8, label: '문학' },
+  { id: 9, label: '자기개발' },
+  { id: 10, label: '경제경영' },
+  { id: 11, label: '재테크' },
+  { id: 12, label: '건강' },
+  { id: 13, label: '요리' },
+  { id: 14, label: '취미' },
+  { id: 15, label: '여행' },
+  { id: 16, label: '회복탄력성' },
+  { id: 17, label: '번아웃' },
+  { id: 18, label: '인공지능' },
+  { id: 19, label: '미니멀리즘' },
+  { id: 20, label: '루틴' },
+  { id: 21, label: '불안' },
+  { id: 22, label: '미국주식' },
+  { id: 23, label: '웹툰' },
+  { id: 24, label: '교양' },
+  { id: 25, label: '기술' },
+  { id: 26, label: '인간관계' },
+  { id: 27, label: '예술' },
+  { id: 28, label: '종교' },
+  { id: 29, label: '인문학' },
+  { id: 30, label: '심리' },
+];

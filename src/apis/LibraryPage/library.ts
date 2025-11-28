@@ -20,7 +20,7 @@ interface LibraryListItemResponse {
   };
 }
 
-// "나의 서재 목록" 가져오기
+// 나의 서재 목록 가져오기
 export const getMyLibraryList = async (): Promise<LibraryBook[]> => {
   const res = await axiosInstance.get<ApiResponse<LibraryListItemResponse[]>>(
     '/api/v1/home/library',
@@ -28,7 +28,6 @@ export const getMyLibraryList = async (): Promise<LibraryBook[]> => {
 
   const items = res.data.success?.data ?? [];
 
-  // 백엔드 응답을 프론트에서 쓰는 LibraryBook 형태로 변환
   const books: LibraryBook[] = items.map((item) => ({
     id: item.id,                    // userBookId
     title: item.book.title,

@@ -21,12 +21,11 @@ export interface LibraryBookDetail {
   userBookImg: string | null;
   pageCount: number | null;
   readingMinutes: number | null;
-  sentence: string | null; // 내가 뽑은 구절
-  note: string | null;      // 독서록
+  sentence: string | null; 
+  note: string | null; 
   keywords: Keyword[];
 }
 
-// (선택) 공통 응답 래퍼 – 명세서 기준
 export interface LibraryDetailSuccessResponse {
   resultType: 'SUCCESS';
   error: null;

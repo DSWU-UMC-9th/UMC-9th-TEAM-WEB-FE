@@ -14,12 +14,10 @@ const LibraryBookGrid = ({ books, onAddClick, onRequestDelete }: LibraryBookGrid
     <div
       className="
         grid
-        grid-cols-2
-        sm:grid-cols-3
-        lg:grid-cols-4
-        gap-15
-        px-4 sm:px-8
-        py-10
+        grid-cols-4       
+        gap-x-[150px]
+        gap-y-[182.5px]
+        px-[135px]
         justify-items-center
       "
     >

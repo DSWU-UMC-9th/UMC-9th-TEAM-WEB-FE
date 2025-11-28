@@ -14,12 +14,12 @@ const LibraryAddCard = ({ onClick, imageUrl }: LibraryAddCardProps) => {
       type="button"
       onClick={onClick}
       className="
-        w-full
-        max-w-[260px]
+        w-[323px]
+        h-[468px]
         aspect-[3/4.4]
         grid place-items-center
         bg-white-normal-hover
-        shadow-[0_0_40px_rgba(0,0,0,0.18)]
+        shadow-[0_4px_30px_5px_rgba(0,0,0,0.25)]
         overflow-hidden
       "
     >
@@ -33,11 +33,10 @@ const LibraryAddCard = ({ onClick, imageUrl }: LibraryAddCardProps) => {
         <div
           className="
             flex items-center justify-center
-            bg-white
+            bg-brown-light
             rounded-full
-            w-[25%]
+            w-[81px]
             aspect-square
-            shadow-[0_0_12px_rgba(0,0,0,0.12)]
           "
         >
           <PlusIcon

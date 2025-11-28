@@ -37,7 +37,6 @@ export const createMyLibraryBook = async (
   const res = await axiosInstance.post('/api/v1/library', formData);
   const body = res.data;
 
-  console.log('📚 [createMyLibraryBook] raw response:', body);
 
   if (body && typeof body === 'object' && 'resultType' in body) {
     if (body.resultType === 'SUCCESS' && body.success?.data) {

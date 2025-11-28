@@ -1,24 +1,3 @@
-/**
- * MyLibrarySection 컴포넌트
- *
- * 홈 페이지에서 사용자의 서재 섹션을 표시합니다.
- * 인증 상태, 로딩 상태, 데이터 가용성에 따라 다른 상태를 보여줍니다.
- *
- * @param {MyLibrarySectionProps} props - 컴포넌트 props
- * @param {boolean} props.isLoggedIn - 사용자가 현재 로그인했는지 여부
- * @param {boolean} props.loading - 도서 데이터가 현재 로딩 중인지 여부
- * @param {string | null} props.error - 도서 데이터 로드 실패 시 에러 메시지
- * @param {Array} props.books - 서재에 표시할 도서 객체 배열
- * @param {Function} props.onKeywordClick - 키워드 클릭 시 호출되는 콜백 함수
- *
- * @returns {JSX.Element} 다양한 상태를 포함하는 사용자 서재 섹션:
- * - 비인증 사용자를 위한 로그인 필요 메시지
- * - 데이터 가져오는 동안 로딩 표시
- * - 데이터 가져오기 실패 시 에러 메시지
- * - 도서가 없을 때 "도서 추가" 버튼이 있는 빈 상태
- * - 도서가 있을 때 도서 카드 그리드
- */
-
 import type { MyLibrarySectionProps } from '@/types/HomePage/home';
 import { useNavigate } from 'react-router-dom';
 import MyLibraryBookCard from '@/pages/HomePage/components/MyLibraryBookCard';
