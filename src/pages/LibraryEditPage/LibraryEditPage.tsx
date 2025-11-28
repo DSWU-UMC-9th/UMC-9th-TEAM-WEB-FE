@@ -109,7 +109,7 @@ const LibraryEditPage = () => {
       await updateLibraryBook(userBookId, payload);
       alert('도서 정보가 수정되었습니다.');
       navigate(`/library/${userBookId}`);
-    } catch (err) {
+    } catch (_err) {
       alert('도서 수정에 실패했어요.');
     } finally {
       setIsSaving(false);
