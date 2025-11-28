@@ -6,17 +6,6 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), svgr(), tailwindcss()],
-  server: {
-    proxy: {
-      // 프론트에서 /api 로 시작하는 요청은
-      // 백엔드 서버로 프록시
-      '/api': {
-        target: 'http://18.223.113.231:3000',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
   resolve: {
     alias: [
       { find: '@', replacement: '/src' },
