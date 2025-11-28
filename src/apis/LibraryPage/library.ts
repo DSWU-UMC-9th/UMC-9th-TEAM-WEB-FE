@@ -2,9 +2,15 @@
 import { axiosInstance } from '@/apis/axios';
 import type { LibraryBook } from '@/types/LibraryPage/library';
 
+type ApiError = {
+  errorCode: string;
+  reason: string;
+  data?: unknown;
+} | null;
+
 type ApiResponse<T> = {
   resultType: 'SUCCESS' | 'FAIL';
-  error: any;
+  error: ApiError;
   success: {
     data: T;
   } | null;
@@ -29,7 +35,7 @@ export const getMyLibraryList = async (): Promise<LibraryBook[]> => {
   const items = res.data.success?.data ?? [];
 
   const books: LibraryBook[] = items.map((item) => ({
-    id: item.id,                    // userBookId
+    id: item.id, // userBookId
     title: item.book.title,
     author: item.book.author,
     imgUrl: item.book.imgUrl,
@@ -39,14 +45,17 @@ export const getMyLibraryList = async (): Promise<LibraryBook[]> => {
 };
 
 // 나의 서재 도서 삭제
-export const deleteMyLibraryBook = async (userBookId: number) => {
-    const res = await axiosInstance.delete(`/api/v1/library/${userBookId}`);
-    const body = res.data;
-  
-    if (body.resultType === 'FAIL') {
-      throw new Error(body.error?.reason ?? '삭제에 실패했습니다.');
-    }
-  
-    return body.success?.data;
-  };
-  
+export const deleteMyLibraryBook = async (
+  userBookId: number,
+): Promise<unknown> => {
+  const res = await axiosInstance.delete<ApiResponse<unknown>>(
+    `/api/v1/library/${userBookId}`,
+  );
+  const body = res.data;
+
+  if (body.resultType === 'FAIL') {
+    throw new Error(body.error?.reason ?? '삭제에 실패했습니다.');
+  }
+
+  return body.success?.data ?? null;
+};

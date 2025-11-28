@@ -17,24 +17,28 @@ interface CommonResponse<T> {
   } | null;
 }
 
+type LibraryDetailBody = LibraryDetailApiResponse | LibraryBookDetail;
+
 export const getLibraryDetail = async (
   userBookId: number,
 ): Promise<LibraryBookDetail> => {
   const res = await axiosInstance.get(`/api/v1/library/${userBookId}`);
-  const body = res.data;
+  const body = res.data as LibraryDetailBody;
 
   console.log('[getLibraryDetail] raw response:', body);
 
-  let payload: any = body;
+  let payload: LibraryBookDetail | null;
 
-  if (payload && typeof payload === 'object' && 'resultType' in payload) {
-    const api = payload as LibraryDetailApiResponse;
+  if ('resultType' in body) {
+    const api = body;
 
     if (api.resultType === 'FAIL') {
       throw new Error(api.error?.reason ?? '도서 상세 정보를 불러오지 못했어요.');
     }
 
-    payload = api.success?.data;
+    payload = (api.success?.data ?? null) as LibraryBookDetail | null;
+  } else {
+    payload = body as LibraryBookDetail;
   }
 
   if (!payload) {
@@ -55,7 +59,7 @@ export const getLibraryDetail = async (
     sentence: payload.sentence ?? null,
     note: payload.note ?? null,
     keywords: Array.isArray(payload.keywords)
-      ? payload.keywords.map((k: any) => ({
+      ? payload.keywords.map((k) => ({
           id: k.id,
           name: k.name,
         }))
