@@ -1,8 +1,7 @@
-> 추후 수정 예정
-
 <div align="center">
 
-# Page Partner
+<img width="50%" height="486" alt="image" src="https://github.com/user-attachments/assets/de29f1c1-72f6-4283-b745-244dc6fef342" />
+
 
 **UMC 9th 덕성여대 미니 프로젝트**
 
@@ -15,11 +14,14 @@
 | <a href="https://github.com/jinhyo0"><img src="https://avatars.githubusercontent.com/u/150879545?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/yeon-yeon1"><img src="https://avatars.githubusercontent.com/u/158417764?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/suminn01"><img src="https://avatars.githubusercontent.com/u/133071167?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/yangyangeeee"><img src="https://avatars.githubusercontent.com/u/156039054?v=4" width="120px;" alt=""/></a> |
 | --- | --- | -- | -- |
 | 김진효 | 노진경 | 백수민 | 양서윤 |
+| 프로젝트 초기세팅<br/>공통 컴포넌트 | 홈 페이지<br/>로그인 페이지<br/>회원가입 페이지<br/>배포 | 나의 서재 페이지<br/>서재 상세 페이지<br/>서재 등록 페이지 | 토론 광장 페이지<br/>토론 광장 상세 페이지 |
 
 <br>
 
 ## 📚 서비스 소개
-작성 예정
+### 페이지 파트너는 독서를 단순한 기록이 아닌 **성장의 데이터**로 전환하는 독서 도우미 서비스입니다.
+바쁜 일정 속에서도 `꾸준한 완독 습관`을 만들어갈 수 있도록 설계되었으며, `시간과 장소의 제약 없이` 누구나 깊이 있는 **지적 교류**를 경험할 수 있습니다.
+주요 이용자는 `독서 의지는 있지만 완독률이 낮은` **20~30대 직장인과 대학생**으로, 오프라인 모임에 참여하기 어려운 환경에서도 `지속적이고 고품질의 독서 경험`을 누릴 수 있도록 돕습니다.
 
 <br>
 
@@ -31,7 +33,7 @@
 | Programming Language | <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/> | 정적 타입을 제공하여 코드의 안정성과 가독성을 높이고, 개발 중 오류를 사전에 방지할 수 있어 유지보수에 유리 |
 | Styling | <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> | 유틸리티 클래스 기반의 스타일링으로 반복되는 CSS 코드 작성을 줄이고, 빠르고 일관된 UI 구현 가능 |
 | Data Fetching | <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> | 직관적인 API 사용법과 자동 JSON 변환 기능으로 비동기 통신이 간편 |
-| Data State | <img src="https://img.shields.io/badge/TanStack Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"> | 서버 상태 캐싱, 리패칭, 에러·로딩 상태 관리 등을 자동화하여 안정적이고 효율적인 데이터 흐름 구현 가능 |
+| State management | <img src="https://img.shields.io/badge/zustand-orange?style=for-the-badge&logo=zustand&logoColor=white"> | 가볍고 직관적인 구조로 전역 상태를 쉽게 관리하며, selector 구독을 통한 최소 리렌더링으로 높은 성능 제공 |
 | Routing | <img src="https://img.shields.io/badge/ReactRouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white"> | SPA에 최적화된 라우팅 기능 제공, 선언적 방식으로 라우트를 쉽게 구성 가능 |
 | Formatting | <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-000000?style=for-the-badge&logo=prettier&logoColor=F7B93E"> <img src="https://img.shields.io/badge/stylelint-263238?style=for-the-badge&logo=stylelint&logoColor=white"> | 코드 스타일을 통일하고 잠재적인 오류를 사전에 방지하여 협업 시 효율성을 높임 |
 | Package Manager | <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white"> | 빠른 설치 속도와 안정적인 패키지 관리 기능으로 프로젝트 환경 설정에 용이 |
@@ -153,22 +155,30 @@ develop ← 작업 브랜치
 📦UMC-9TH-TEAM-WEB-FE
  ┣ 📂.github
  ┃ ┣ 📂ISSUE_TEMPLATE
+ ┃ ┣ 📂workflows
+ ┃ ┃ ┗ 📜fe-ci.yml
+ ┃ ┃ ┗ 📜trigger-fork-sync.yml
  ┃ ┗ 📜pull_request_template.md
  ┣ 📂public
  ┃ ┗ 📂fonts
+ ┃ ┗ 📜Logo.svg
  ┣ 📂src
  ┃ ┣ 📂apis
  ┃ ┣ 📂assets
  ┃ ┣ 📂components
  ┃ ┣ 📂constants
- ┃ ┣ 📂context
- ┃ ┣ 📂data
  ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📂mutations
- ┃ ┃ ┣ 📂queries
  ┃ ┣ 📂layouts
  ┃ ┣ 📂pages
- ┃ ┃ ┣ 📂MainPage(수정예정)
+ ┃ ┃ ┣ 📂DiscussionDetailPage
+ ┃ ┃ ┣ 📂DiscussionPage
+ ┃ ┃ ┣ 📂HomePage
+ ┃ ┃ ┣ 📂LibraryDetailPage
+ ┃ ┃ ┣ 📂LibraryEditPage
+ ┃ ┃ ┣ 📂LibraryPage
+ ┃ ┃ ┣ 📂LoginPage
+ ┃ ┃ ┣ 📂PostBookPage
+ ┃ ┃ ┣ 📂SignupPage
  ┃ ┣ 📂routes
  ┃ ┣ 📂types
  ┃ ┣ 📂utils
@@ -196,10 +206,8 @@ develop ← 작업 브랜치
   - apis - 서버와 통신하는 API 함수 모음
   - assets - 사용되는 모든 에셋
   - components - 공용 컴포넌트 및 스타일
-  - data - json 데이터
+  - constants - 프로젝트 전역에서 사용되는 상수값 및 설정 모음
   - hooks - 전역으로 사용되는 훅
-    - mutaions - React Query의 useMutation 훅 관련 로직
-    - queries - React Query의 useQuery / useInfiniteQuery 관련 로직
   - layouts - 페이지의 공통 레이아웃 컴포넌트
   - pages - 실제 라우팅되는 페이지 컴포넌트
   - routes - 도메인 별 라우팅 페이지와 컴포넌트 및 스타일 등
